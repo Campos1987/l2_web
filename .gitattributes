@@ -1,0 +1,2 @@
+# Força o uso de LF (Linux/Mac style) em todos os arquivos de texto
+* text=auto eol=lf

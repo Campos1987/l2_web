@@ -1,0 +1,14 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model gk_news {
+  id      Int     @id @default(autoincrement())
+  title   String? @db.VarChar(50)
+  content String? @db.Text
+}

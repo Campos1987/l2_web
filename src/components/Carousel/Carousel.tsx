@@ -69,9 +69,7 @@ const Carousel = ({ data }: CarouselProps) => {
                 {item.label}
               </h2>
               <p
-                className='absolute top-1/2 mt-2 text-xl font-medium text-gray-100
-    drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]
-    max-w-[80%]'
+                className='absolute top-1/2 mt-2 text-xl font-medium text-gray-100 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] max-w-[80%]'
               >
                 {item.description}
               </p>

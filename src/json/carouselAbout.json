@@ -1,0 +1,12 @@
+{
+  "banner1": {
+    "image": "banner_1",
+    "label": "title-1",
+    "description": "teste-1 teste-1 teste-1"
+  },
+  "banner2": {
+    "image": "banner_2",
+    "label": "title-2",
+    "description": "teste-1 teste-1 teste-1"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "events": {
+    "tvt": {
+      "id": "tvt",
+      "isActive": true,
+      "type": "team",
+      "label": "Team vs Team",
+      "description": "Join forces and battle for glory in the grand arena.",
+      "time": "Every 2H"
+    },
+    "ctf": {
+      "id": "ctf",
+      "isActive": true,
+      "type": "team",
+      "label": "Capture the Flag",
+      "description": "Capture the enemy flag and defend your base.",
+      "time": "Every 2H"
+    },
+    "siege": {
+      "id": "siege",
+      "isActive": true,
+      "type": "siege",
+      "label": "Castle Siege",
+      "description": "Massive battles where clans fight for castle dominance and taxes.",
+      "time": "Weekly"
+    },
+    "territory": {
+      "id": "territory",
+      "isActive": true,
+      "type": "territory",
+      "label": "Territory War",
+      "description": "Defend your region's wards and earn special badges.",
+      "time": "Saturday"
+    },
+    "olympiad": {
+      "id": "olympiad",
+      "isActive": true,
+      "type": "olympiad",
+      "label": "Grand Olympiad",
+      "description": "Compete in 1vs1 battles to achieve Hero status and wield legendary weapons.",
+      "time": "Daily 18H"
+    }
+  }
+}

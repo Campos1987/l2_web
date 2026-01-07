@@ -1,0 +1,36 @@
+section.hero {
+  display: flex;
+  position: relative;
+  justify-content: center; /* Centraliza Horizontalmente */
+  align-items: center; /* Centraliza Verticalmente */
+  height: calc(100vh - 60px); /* Importante: O pai precisa ter altura! */
+  background: url('/images/bg/mainbg-1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 0;
+}
+
+section.hero::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(
+    to bottom,
+    transparent 25%,
+    /* Substitui o rgba(0,0,0,0) */ var(--color-black) 95%
+      /* Substitui o rgba(0,0,0,1) */
+  );
+}
+
+section.hero .heroChar {
+  background: url('/images/bg/hero_char_2.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  height: 100%;
+  width: 100vw;
+}

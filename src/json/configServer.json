@@ -1,0 +1,11 @@
+{
+  "info": {
+    "serverName": "GranKain",
+    "expRate": "100x",
+    "skillRate": "50x",
+    "adenaRate": "30x",
+    "dropRate": "10x",
+    "safeEnchant": "+4",
+    "maxEnchant": "+20"
+  }
+}

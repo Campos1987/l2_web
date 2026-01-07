@@ -1,0 +1,36 @@
+{
+  "topBar": [
+    {
+      "label": "home",
+      "url": "/",
+      "type": ["mobile", "desktop"],
+      "position": { "mobile": 5, "desktop": 1 }
+    },
+    {
+      "label": "news",
+      "url": "news",
+      "type": ["mobile", "desktop"],
+      "position": { "mobile": 2, "desktop": 2 }
+    },
+    {
+      "label": "login",
+      "url": "login",
+      "type": ["mobile", "desktop"],
+      "position": { "mobile": 3, "desktop": 3 }
+    },
+    {
+      "label": "register",
+      "url": "register",
+      "type": ["mobile", "desktop"],
+      "position": { "mobile": 4, "desktop": 4 }
+    }
+  ],
+  "footer": [
+    {
+      "label": "footer",
+      "url": "/",
+      "type": ["mobile", "desktop"],
+      "position": { "mobile": 1, "desktop": 1 }
+    }
+  ]
+}

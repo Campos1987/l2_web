@@ -1,0 +1,58 @@
+.footer {
+  background-color: #000;
+  text-align: center;
+  padding: 2rem 1rem;
+  position: relative;
+  font-family: sans-serif;
+  border-top: 1px solid #f1c40f;
+  margin-top: 3rem;
+}
+.footerLogo {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000;
+}
+
+.footerLogo .diamond {
+  width: 20px;
+  height: 20px;
+  transform: rotate(45deg);
+  border: 1px solid #f1c40f;
+}
+
+.footerLogo h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.footerNav {
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.footerNav a {
+  text-decoration: none;
+}
+
+.footerNav .dot {
+  color: #f1c40f;
+}
+
+.footerLegal {
+  color: #ccc;
+  font-size: 0.75rem;
+  margin-top: 1rem;
+}
+
+.footerIcon {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}

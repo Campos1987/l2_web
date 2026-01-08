@@ -4,25 +4,37 @@
       "label": "home",
       "url": "/",
       "type": ["mobile", "desktop"],
-      "position": { "mobile": 5, "desktop": 1 }
+      "position": { "mobile": 1, "desktop": 1 }
     },
     {
-      "label": "news",
-      "url": "news",
+      "label": "about us",
+      "url": "about",
       "type": ["mobile", "desktop"],
       "position": { "mobile": 2, "desktop": 2 }
+    },
+    {
+      "label": "download",
+      "url": "download",
+      "type": ["mobile", "desktop"],
+      "position": { "mobile": 4, "desktop": 4 }
+    },
+    {
+      "label": "donate",
+      "url": "donate",
+      "type": ["mobile", "desktop"],
+      "position": { "mobile": 5, "desktop": 5 }
     },
     {
       "label": "login",
       "url": "login",
       "type": ["mobile", "desktop"],
-      "position": { "mobile": 3, "desktop": 3 }
+      "position": { "mobile": 8, "desktop": 8 }
     },
     {
       "label": "register",
       "url": "register",
       "type": ["mobile", "desktop"],
-      "position": { "mobile": 4, "desktop": 4 }
+      "position": { "mobile": 9, "desktop": 9 }
     }
   ],
   "footer": [

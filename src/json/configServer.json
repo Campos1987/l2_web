@@ -1,11 +1,11 @@
 {
-  "info": {
-    "serverName": "GranKain",
-    "expRate": "100x",
-    "skillRate": "50x",
-    "adenaRate": "30x",
-    "dropRate": "10x",
-    "safeEnchant": "+4",
-    "maxEnchant": "+20"
-  }
+  "serverName": "GranKain",
+  "expRate": "100x",
+  "skillRate": "50x",
+  "adenaRate": "30x",
+  "dropRate": "10x",
+  "safeEnchant": "+4",
+  "maxEnchant": "+20",
+  "patch": "3.0",
+  "chronicle": "High Five"
 }

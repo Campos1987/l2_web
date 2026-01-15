@@ -7,3 +7,4 @@ export interface CarouselItem {
 export type CarouselProps = {
   data: Record<string, CarouselItem> | null; // Adicionei null para segurança
 };
+

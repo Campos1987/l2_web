@@ -9,6 +9,8 @@
   --gold-primary: #d4af37;
   --gold-secondary: #997b38;
 
+  --disabled: #01010c;
+
   --event-team: rgb(243, 156, 18);
   --event-siege: #e74c3c;
   --event-territory: #3498db;
@@ -22,6 +24,8 @@
 
   --color-gold-primary: var(--gold-primary);
   --color-gold-secondary: var(--gold-secondary);
+
+  --color-disabled: var(--disabled);
 
   --font-cinzel: var(--font-cinzel-sans);
 
@@ -40,17 +44,14 @@ body {
 
 h1 {
   font-family: 'Cinzel', serif;
-
   color: var(--color-gold-primary);
   font-size: 1.5rem;
-  margin: 2.5rem 0 1.5rem 0;
   letter-spacing: 1px;
 }
 
 h2 {
   color: var(--color-gold-primary);
   text-align: center;
-  margin: 32px 0 4px 0;
   font-size: 1.125rem;
   font-weight: 600;
 }
@@ -96,6 +97,14 @@ h2 {
   border-radius: 12px;
   width: 100%;
 }
+
+.btn.disabled,
+.btn.disabled:hover {
+  background: var(--disabled);
+  cursor: not-allowed;
+  color: #666666;
+}
+
 .btn:hover {
   background: var(--gold-secondary);
 }

@@ -5,6 +5,7 @@ export interface validationProps {
   isAlphanumeric?: boolean;
   isAlphaNumericNoAccent?: boolean;
   isAlpha?: boolean;
+  isConfirmPassword?: string;
   AlphaUpperPattern?: number;
   AlphaLowerPattern?: number;
   NumberPattern?: number;

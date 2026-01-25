@@ -1,19 +1,8 @@
 import { inputProps, requirementProp } from '@/types/validate';
 import { validInput } from './Validate';
-import { Check } from 'lucide-react';
+import { Check, Eye, EyeOff } from 'lucide-react';
 import { forwardRef, useEffect, useState } from 'react';
-
-const MAP_TEXT = {
-  isEmail: 'Digite endereço de e-mail válido',
-  isAlphanumeric: 'Apenas letras e números',
-  isAlphaNumericNoAccent: 'Apenas letras e números',
-  isAlpha: 'Apenas letras',
-  AlphaUpperPattern: 'Pelo menos gkn letra maiúscula',
-  AlphaLowerPattern: 'Pelo menos gkn letra minúscula',
-  NumberPattern: 'Pelo menos gkn números',
-  LengthValidPattern: 'Pelo menos gkn caracteres',
-  SpecialPattern: 'Pelomenos gkn caracteres especiais',
-};
+import { MAP_TEXT } from '@/lib/validation';
 
 const Requirement = ({ requere }: requirementProp) => {
   return (
@@ -45,7 +34,9 @@ const Requirement = ({ requere }: requirementProp) => {
 export const InputValid = forwardRef<HTMLInputElement, inputProps>(
   ({ validation, value, onChange, onValidationChange, ...props }, ref) => {
     const [isFocused, setIsFocused] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const safeValue = value ? String(value) : '';
+    const isPasswordType = props.type === 'password';
 
     const requirement = validInput({
       inputValue: safeValue,
@@ -64,6 +55,7 @@ export const InputValid = forwardRef<HTMLInputElement, inputProps>(
       <div className='relative w-full'>
         <input
           {...props}
+          type={isPasswordType && showPassword ? 'text' : props.type}
           ref={ref}
           value={value}
           onChange={onChange}
@@ -75,6 +67,15 @@ export const InputValid = forwardRef<HTMLInputElement, inputProps>(
               : ''
           }`}
         />
+        {isPasswordType && (
+          <button
+            type='button'
+            onClick={() => setShowPassword(!showPassword)}
+            className='absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-200 focus:outline-none'
+          >
+            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
+        )}
         {showRequirements && (
           <div className='absolute top-full mt-2 left-0 w-full'>
             <Requirement requere={requirement} />

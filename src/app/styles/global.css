@@ -107,6 +107,7 @@ h2 {
 
 .btn:hover {
   background: var(--gold-secondary);
+  cursor: pointer;
 }
 input:focus {
   outline: none;

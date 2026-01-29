@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model accounts {
+  login        String   @id @default("") @db.VarChar(45)
+  password     String?  @db.VarChar(45)
+  name         String?  @db.VarChar(50)
+  email        String?  @unique(map: "email") @db.VarChar(255)
+  created_time DateTime @default(now()) @db.Timestamp(0)
+  lastactive   BigInt   @default(0) @db.UnsignedBigInt
+  accessLevel  Int      @default(0) @db.TinyInt
+  lastIP       String?  @db.Char(15)
+  lastServer   Int?     @default(1) @db.TinyInt
+  pcIp         String?  @db.Char(15)
+  hop1         String?  @db.Char(15)
+  hop2         String?  @db.Char(15)
+  hop3         String?  @db.Char(15)
+  hop4         String?  @db.Char(15)
+}

@@ -10,6 +10,7 @@
   --gold-secondary: #997b38;
 
   --disabled: #01010c;
+  --bg-error: #ff0000;
 
   --event-team: rgb(243, 156, 18);
   --event-siege: #e74c3c;
@@ -26,6 +27,7 @@
   --color-gold-secondary: var(--gold-secondary);
 
   --color-disabled: var(--disabled);
+  --color-bg-error: var(--bg-error);
 
   --font-cinzel: var(--font-cinzel-sans);
 

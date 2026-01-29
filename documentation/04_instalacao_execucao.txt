@@ -1,0 +1,26 @@
+4. Instalação e Execução
+
+Passo 1: Clonar o repositório
+git clone <url-do-repo>
+cd l2_web
+
+Passo 2: Instalar dependências
+npm install
+
+Passo 3: Configurar Banco de Dados
+Certifique-se que o MariaDB está rodando.
+Crie um arquivo .env na raiz com:
+DATABASE_URL="mysql://root:password@localhost:3306/l2jdb"
+RECAPTCHA_SECRET="sua-chave-aqui"
+
+Passo 4: Sincronizar Schema (Prisma)
+npx prisma db push
+(Isso criará as tabelas no banco de dados baseado no schema.prisma)
+
+Passo 5: Rodar em Desenvolvimento
+npm run dev
+
+O projeto estará disponível em: http://localhost:3000
+
+Passo 6: Rodar Testes
+npm run test (ou o script configurado no package.json para vitest)

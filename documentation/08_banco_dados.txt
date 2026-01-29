@@ -1,0 +1,17 @@
+8. Banco de Dados
+
+Banco: MariaDB / MySQL
+ORM: Prisma
+
+Tabela Principal: `accounts` (Padrão L2J Server)
+
+Colunas Importantes:
+- login (String, PK): Login do usuário
+- password (String): Hash SHA1 da senha
+- email (String, Unique): Email do usuário
+- accessLevel (Int): Nível de acesso (0 = player, >0 = GM/Admin, <0 = Banido/Bloqueado)
+- lastactive (BigInt): Timestamp do último login
+- created_time (DateTime): Data de criação
+
+Notas:
+O schema precisa refletir exatamente a estrutura esperada pelo servidor de jogo (L2J Java Server), pois ambos compartilham o mesmo banco de dados.

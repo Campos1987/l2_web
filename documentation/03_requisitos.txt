@@ -1,0 +1,16 @@
+3. Requisitos do Sistema
+
+Para rodar este projeto, você precisa de:
+
+Ambiente de Desenvolvimento:
+- Node.js >= 20.x (Recomendado LTS)
+- npm ou pnpm
+- Banco de Dados MariaDB ou MySQL rodando localmente (ou Docker)
+
+Variáveis de Ambiente (.env):
+O projeto depende das seguintes variáveis (verificar .env.example se existir):
+- DATABASE_URL: String de conexão Prisma (ex: "mysql://user:pass@localhost:3306/l2jdb")
+- RECAPTCHA_SECRET: Chave secreta do Google reCAPTCHA v2/v3
+
+Dependências Externas:
+- Google reCAPTCHA (para proteção do registro)

@@ -29,7 +29,8 @@
   border: 2px solid var(--color-gold-primary); /* Cor da borda ciano */
   border-radius: 30px;
   cursor: pointer;
-  box-shadow: 0 0 10px var(--color-gold-primary),
+  box-shadow:
+    0 0 10px var(--color-gold-primary),
     inset 0 0 10px var(--color-gold-primary);
   transition: 0.3s;
   overflow: visible;
@@ -92,6 +93,7 @@
   background: rgba(0, 0, 0, 0.5);
   color: var(--color-gold-primary);
   font-weight: 800;
-  box-shadow: 0 0 20px var(--color-gold-primary),
+  box-shadow:
+    0 0 20px var(--color-gold-primary),
     0 0 40px var(--color-gold-primary);
 }

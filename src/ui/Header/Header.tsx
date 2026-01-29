@@ -1,5 +1,5 @@
 'use client';
-import Logo from '../Logo/Logo';
+import Logo from '../Logo';
 import ToggleMobile from './ToggleMobile/ToggleMobile';
 import TopMenu from './TopMenu';
 

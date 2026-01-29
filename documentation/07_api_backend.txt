@@ -1,0 +1,15 @@
+7. API / Backend
+
+Este projeto utiliza **Server Actions** do Next.js, eliminando a necessidade de uma API REST tradicional
+para operações internas.
+
+Server Actions Principais:
+
+Arquivo: src/app/register/actions.ts
+Função: registerUser(formData)
+- Recebe: Objeto validado pelo Zod
+- Realiza: Validação Server-side, Verificação reCAPTCHA, Hashing de Senha, Insert no DB.
+- Retorna: Promise<RegisterState> { success: boolean, message: string, errors?: ... }
+
+Integrações Externas:
+- Google reCAPTCHA API (POST https://www.google.com/recaptcha/api/siteverify)

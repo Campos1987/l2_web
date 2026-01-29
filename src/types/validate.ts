@@ -1,6 +1,7 @@
 import { InputHTMLAttributes } from 'react';
 
 export interface validationProps {
+  validBd?: boolean;
   isEmail?: boolean;
   isAlphanumeric?: boolean;
   isAlphaNumericNoAccent?: boolean;
@@ -20,6 +21,7 @@ export interface inputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export interface ValdidInputProp {
   inputValue: string;
+  inputName: string;
   validation: validationProps;
 }
 
@@ -30,4 +32,11 @@ export interface requirementProp {
 export interface ValidationResult {
   isValid: boolean;
   validLength?: number;
+}
+
+export type ValidCell = 'login' | 'email';
+
+export interface validInputBdProps {
+  cell: ValidCell;
+  value: string;
 }

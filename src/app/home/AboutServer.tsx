@@ -1,4 +1,4 @@
-import Carousel from '@/components/Carousel/Carousel';
+import Carousel from '@/ui/Carousel/Carousel';
 import carouselAbout from '@/lib/carouselAbout';
 
 const AboutServer = () => {

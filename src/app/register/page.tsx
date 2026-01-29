@@ -1,46 +1,52 @@
 'use client';
 import config from '@/json/configServer.json';
 import Link from 'next/link';
-import { InputValid } from './Inputs';
+import { RegisterFormInput } from '@/modules/auth/components/RegisterFormInput';
 import { useState, useTransition } from 'react';
-import { registerUser } from './actions';
-// import { useRouter } from 'next/navigation';
+import { registerUser } from '@/modules/auth/actions';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
     name: '',
     lastname: '',
     email: '',
-    user: '',
+    login: '',
     password: '',
     confirmPassword: '',
+    captchaToken: '',
   });
 
   const [formValid, setFormValid] = useState<Record<string, boolean>>({
     name: false,
     lastname: false,
     email: false,
-    user: false,
+    login: false,
     password: false,
     confirmPassword: false,
+    captcha: false,
   });
 
   function handleValidation(name: string, isValid: boolean) {
-    setFormValid(prev => {
-      const newState = {
-        ...prev,
-        [name]: isValid,
-      };
-      return newState;
-    });
+    setFormValid(prev => ({
+      ...prev,
+      [name]: isValid,
+    }));
   }
+
+  const handleCaptcha = (token: string | null) => {
+    if (token) {
+      setFormData(prev => ({ ...prev, captchaToken: token }));
+      handleValidation('captcha', true);
+    } else {
+      setFormData(prev => ({ ...prev, captchaToken: '' }));
+      handleValidation('captcha', false);
+    }
+  };
 
   const isFormComplete = Object.values(formValid).every(Boolean);
 
-  /* New Imports moved to top */
-
   const [isPending, startTransition] = useTransition();
-  // const router = useRouter();
 
   const handleRegister = () => {
     if (!isFormComplete) return;
@@ -53,7 +59,6 @@ const RegisterPage = () => {
         // router.push('/login');
       } else {
         alert(result.message || 'Erro ao criar conta');
-        // Aqui você poderia setar erros específicos se necessário
         console.error(result.errors);
       }
     });
@@ -87,7 +92,7 @@ const RegisterPage = () => {
           <h2>Informações Usuário</h2>
           <div className='flex gap-5'>
             <div>
-              <InputValid
+              <RegisterFormInput
                 className='w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-neutral-100 focus:border-violet-500 focus:ring-violet-500'
                 type='text'
                 placeholder='Nome'
@@ -106,7 +111,7 @@ const RegisterPage = () => {
               />
             </div>
             <div>
-              <InputValid
+              <RegisterFormInput
                 className='w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-neutral-100 focus:border-violet-500 focus:ring-violet-500'
                 type='text'
                 placeholder='Sobrenome'
@@ -126,7 +131,7 @@ const RegisterPage = () => {
             </div>
           </div>
           <div>
-            <InputValid
+            <RegisterFormInput
               className='w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-neutral-100 focus:border-violet-500 focus:ring-violet-500'
               type='text'
               placeholder='nome@exemplo.com'
@@ -144,11 +149,11 @@ const RegisterPage = () => {
           </div>
           <h2>Informações Conta</h2>
           <div>
-            <InputValid
+            <RegisterFormInput
               className='w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-neutral-100 focus:border-violet-500 focus:ring-violet-500'
               type='text'
               placeholder='Login'
-              name='user'
+              name='login'
               required
               autoComplete='off'
               maxLength={12}
@@ -156,13 +161,13 @@ const RegisterPage = () => {
                 isAlphaNumericNoAccent: true,
                 LengthValidPattern: 5,
               }}
-              value={formData.user}
+              value={formData.login}
               onChange={handleChange}
-              onValidationChange={isValid => handleValidation('user', isValid)}
+              onValidationChange={isValid => handleValidation('login', isValid)}
             />
           </div>
           <div>
-            <InputValid
+            <RegisterFormInput
               className='w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-neutral-100 focus:border-violet-500 focus:ring-violet-500'
               type='password'
               placeholder='Senha'
@@ -184,7 +189,7 @@ const RegisterPage = () => {
             />
           </div>
           <div>
-            <InputValid
+            <RegisterFormInput
               className='w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-neutral-100 focus:border-violet-500 focus:ring-violet-500'
               type='password'
               placeholder='Confirme a senha'
@@ -200,6 +205,14 @@ const RegisterPage = () => {
               onValidationChange={isValid =>
                 handleValidation('confirmPassword', isValid)
               }
+            />
+          </div>
+          <div className='flex justify-center'>
+            <ReCAPTCHA
+              sitekey='6LfChFUsAAAAABOaT_whiEuTf3AqbJ3XsbWyO8Jh'
+              onChange={handleCaptcha}
+              onExpired={() => handleCaptcha(null)}
+              theme='dark'
             />
           </div>
           <div>

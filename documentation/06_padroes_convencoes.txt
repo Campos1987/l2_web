@@ -1,0 +1,21 @@
+6. Padrões e Convenções (Refatorado)
+
+Arquitetura Modular:
+- Funcionalidades complexas (como Auth, Shop, Dashboard) devem residir em `src/modules/`.
+- Componentes visuais puros (sem regra de negócio específica) devem ir para `src/ui/`.
+- Páginas em `src/app/` devem ser "magras", apenas orquestrando componentes de módulos.
+
+Server Actions:
+- Devem estar em `src/modules/<modulo>/actions.ts`.
+- Não devem conter lógica pesada diretamente. Devem chamar `services.ts`.
+
+Services:
+- Onde vive a regra de negócio e chamadas ao banco (via `infra/db.ts`).
+- Devem ser agnósticos de framework web quando possível.
+
+Validação:
+- Zod Schemas em `src/modules/<modulo>/schemas.ts`.
+
+Nomenclatura:
+- Componentes: PascalCase (ex: `RegisterForm.tsx`).
+- Utilitários/Actions/Services: camelCase (ex: `createUser`, `formatDate`).

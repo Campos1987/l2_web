@@ -4,7 +4,7 @@ import {
   validationProps,
 } from '@/types/validate';
 
-import { MAP_VALID } from '@/lib/validation';
+import { MAP_VALID } from '@/lib/validation/validation';
 
 export const validInput = ({ inputValue, validation }: ValdidInputProp) => {
   return (Object.keys(validation) as (keyof validationProps)[]).reduce(

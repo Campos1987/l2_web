@@ -22,4 +22,6 @@ export const MAP_TEXT = {
   NumberPattern: 'Pelo menos gkn números',
   LengthValidPattern: 'Pelo menos gkn caracteres',
   SpecialPattern: 'Pelomenos gkn caracteres especiais',
+  validBdEmail: 'Email ja cadastrado',
+  validBdLogin: 'Úsuario ja cadastrado',
 };

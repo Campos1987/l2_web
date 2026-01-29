@@ -1,0 +1,27 @@
+2. Stack e Arquitetura
+
+Tecnologias Usadas:
+- Frontend/Backend Framework: Next.js 16.1.1 (App Router)
+- Linguagem: TypeScript 5
+- Estilização: Tailwind CSS 4
+- Banco de Dados: MariaDB / MySQL
+- ORM: Prisma 7.3.0
+- Validação: Zod + React Hook Form
+- Testes: Vitest
+- Ícones: Lucide React
+
+Arquitetura:
+- Monolito Modular (Next.js App Router)
+- Server Components para renderização e SEO.
+- Client Components para interatividade (ex: formulários).
+- Server Actions para lógica de backend (substituindo API REST tradicional para mutações).
+
+Fluxo Geral:
+[Browser] -> [Next.js Server / Server Actions] -> [Prisma ORM] -> [MariaDB]
+
+Diagrama Textual:
+Usuario (Preenche Form) 
+  --> (Client Component) Validação Zod 
+  --> (Server Action) Validação Server-side + ReCAPTCHA 
+  --> (Prisma) Insert 'accounts'
+  --> (MariaDB) Persistência

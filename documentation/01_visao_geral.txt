@@ -1,0 +1,23 @@
+NOVO LINEAGE 2 WEB
+
+1. Visão Geral do Projeto
+Este projeto é a interface web moderna para um servidor privado de Lineage 2 (MMORPG).
+Ele serve como o ponto central de interação para os jogadores fora do jogo.
+
+Objetivo Principal:
+Fornecer uma experiência de usuário premium, rápida e segura para criação de contas,
+gerenciamento de perfil e acesso a informações do servidor.
+
+Problema que Resolve:
+Substitui sites legados, inseguros e com UX ruim (comuns em servidores privados) por uma aplicação moderna,
+responsiva e performática.
+
+Público-Alvo:
+Jogadores de Lineage 2, que buscam praticidade e confiam na segurança do servidor.
+
+Principais Funcionalidades:
+- Cadastro de Usuários (com validação em tempo real e reCAPTCHA)
+- Painel do Jogador (futuro)
+- Download do Client do Jogo
+- Informações sobre o Servidor
+- Sistema de Segurança (Hashing compatível com L2Server)

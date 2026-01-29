@@ -1,4 +1,4 @@
-import Buttons from '@/components/Buttons/Buttons';
+import Button from '@/ui/Button';
 import styles from './styles.module.css';
 import Image from 'next/image';
 
@@ -7,7 +7,7 @@ const Hero = () => {
     <section className={styles.hero}>
       <div className='w-full h-full flex justify-center items-baseline'>
         <Image
-          src='/images/bg/hero_char.png'
+          src='/images/bg/hero_char_2.png'
           alt='Hero Character'
           width={1280}
           height={737}
@@ -16,7 +16,7 @@ const Hero = () => {
         />
       </div>
       <div className='px-12 absolute bottom-18 z-10 w-full max-w-xl flex justify-center'>
-        <Buttons className='btnHero' />
+        <Button className='btnHero' />
       </div>
     </section>
   );

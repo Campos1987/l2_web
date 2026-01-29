@@ -1,0 +1,10 @@
+12. Problemas Conhecidos e Limitações
+
+1. Segurança da Senha: O uso de SHA1 é mandatório pelo servidor de jogo, mas fraco.
+   - Mitigação futura: Implementar 'salt' se o servidor de jogo suportar, ou criptografia dupla (BCrypt na web, SHA1 syncado apenas se necessário).
+
+2. Hardcoded Values:
+   - `accessLevel` está travado em -4 no registro (actions.ts). Verificar se isso significa "conta não ativada" ou "pendente".
+
+3. Erros de Digitação:
+   - Algumas mensagens de erro no código contêm typos ("Muinto longo").

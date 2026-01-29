@@ -1,0 +1,17 @@
+10. Segurança
+
+Autenticação:
+- O Login na WEB ainda não parece implementado (foco atual no registro).
+- O Login no JOGO é feito via Client do Lineage 2, que lê a tabela `accounts`.
+
+Criptografia de Senha:
+- SHA1 (Implementação Legada Obrigatória para L2J).
+- Arquivo: `src/lib/passHash.ts`.
+- Nota: SHA1 é considerado inseguro para padrões web modernos, mas é mantido para compatibilidade com o servidor de jogo Java.
+
+Proteção contra Bots:
+- Google reCAPTCHA implementado no fluxo de registro.
+
+Validação de Dados:
+- Dupla validação (Client + Server) usando Zod.
+- Sanitização básica via Prisma (parâmetros preparados).

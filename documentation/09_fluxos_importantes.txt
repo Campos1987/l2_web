@@ -1,0 +1,16 @@
+9. Fluxos Importantes
+
+Fluxo de Registro (Cadastro):
+
+1. Usuário acessa /register e preenche o formulário.
+2. Front-end valida dados em tempo real (Zod + React Hook Form).
+3. Usuário resolve o Captcha.
+4. Ao submeter, `useFormStatus` (ou similar) bloqueia o botão.
+5. Server Action `registerUser` é chamada.
+   a. Re-valida os dados no servidor (Zod).
+   b. Valida o token do Captcha com o Google.
+   c. Verifica se senhas conferem.
+   d. Gera hash SHA1 da senha.
+   e. Cria registro na tabela `accounts` via Prisma.
+6. Se sucesso: Retorna mensagem de sucesso, redireciona ou limpa formulário.
+7. Se erro: Retorna erros de campo específicos para exibir no input correspondente.

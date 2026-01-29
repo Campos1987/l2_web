@@ -3,14 +3,20 @@ import eventData from '@/json/eventServer.json';
 import style from './styles.module.css';
 
 const EventServer = () => {
-  const events = eventData.events;
   return (
     <section className='h-full px-6'>
       <h1 className='flex items-center gap-3'>
         <Calendar size={35} /> Event
       </h1>
-      <div className='grid grid-cols-1 gap-4 max-w-100 m-auto'>
-        {Object.entries(events).map(([index, events]) => {
+      <div className='grid grid-cols-1 gap-4 max-w-100 m-auto'></div>
+    </section>
+  );
+};
+
+export default EventServer;
+
+/**
+{Object.entries(events).map(([index, events]) => {
           return (
             <article
               key={index}
@@ -24,9 +30,4 @@ const EventServer = () => {
             </article>
           );
         })}
-      </div>
-    </section>
-  );
-};
-
-export default EventServer;
+        */

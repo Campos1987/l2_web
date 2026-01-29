@@ -1,8 +1,10 @@
-import { inputProps, requirementProp } from '@/types/validate';
-import { validInput } from './Validate';
+import { inputProps, requirementProp, ValidCell } from '@/types/validate';
+import { validInput } from '@/lib/validation/Validate';
 import { Check, Eye, EyeOff } from 'lucide-react';
 import { forwardRef, useEffect, useState } from 'react';
-import { MAP_TEXT } from '@/lib/validation';
+import { MAP_TEXT } from '@/lib/validation/validation';
+import { validInputBd } from '@/lib/validation/validInputBd';
+import Link from 'next/link';
 
 const Requirement = ({ requere }: requirementProp) => {
   return (
@@ -31,21 +33,55 @@ const Requirement = ({ requere }: requirementProp) => {
   );
 };
 
-export const InputValid = forwardRef<HTMLInputElement, inputProps>(
-  ({ validation, value, onChange, onValidationChange, ...props }, ref) => {
+export const RegisterFormInput = forwardRef<HTMLInputElement, inputProps>(
+  (
+    { validation, value, name, onChange, onValidationChange, ...props },
+    ref,
+  ) => {
     const [isFocused, setIsFocused] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const safeValue = value ? String(value) : '';
+    const safeName = name ? String(name) : '';
     const isPasswordType = props.type === 'password';
 
     const requirement = validInput({
       inputValue: safeValue,
+      inputName: safeName,
       validation: validation,
     });
 
+    const [hasValueBd, setHasValueBd] = useState(false);
+
+    const handleBlurValidation = async () => {
+      if (!safeValue || hasErrors) {
+        setHasValueBd(false);
+        return;
+      }
+
+      const existe = await validInputBd({
+        cell: safeName as ValidCell,
+        value: safeValue,
+      });
+
+      if (existe) {
+        setHasValueBd(true);
+        onValidationChange?.(false);
+      } else {
+        setHasValueBd(false);
+      }
+    };
+
+    const capitalizedName =
+      safeName.charAt(0).toUpperCase() + safeName.slice(1);
+    const errorKey = `validBd${capitalizedName}` as keyof typeof MAP_TEXT;
     const isAllValid = Object.values(requirement).every(item => item.isValid);
     const hasErrors = Object.values(requirement).some(res => !res.isValid);
     const showRequirements = isFocused && safeValue.length > 0;
+    const totalValid = isAllValid && !hasValueBd;
+
+    useEffect(() => {
+      onValidationChange?.(totalValid);
+    }, [totalValid, onValidationChange]);
 
     useEffect(() => {
       onValidationChange?.(isAllValid);
@@ -57,12 +93,16 @@ export const InputValid = forwardRef<HTMLInputElement, inputProps>(
           {...props}
           type={isPasswordType && showPassword ? 'text' : props.type}
           ref={ref}
+          name={safeName}
           value={value}
           onChange={onChange}
           onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onBlur={async () => {
+            setIsFocused(false);
+            await handleBlurValidation();
+          }}
           className={`${props.className} transition-colors ${
-            safeValue && hasErrors
+            safeValue && (hasErrors || hasValueBd)
               ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
               : ''
           }`}
@@ -76,6 +116,21 @@ export const InputValid = forwardRef<HTMLInputElement, inputProps>(
             {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
           </button>
         )}
+
+        {hasValueBd && !isFocused && (
+          <div className='absolute z-10 top-full -mt-1 rounded-b-xl px-3 py-1 text-sm left-0 w-full bg-bg-error'>
+            {errorKey && MAP_TEXT[errorKey]}
+            {errorKey === 'validBdEmail' && (
+              <Link
+                href='/forgotPassword'
+                className='text-blue-600 ml-1 underline'
+              >
+                recuperar senha.
+              </Link>
+            )}
+          </div>
+        )}
+
         {showRequirements && (
           <div className='absolute top-full mt-2 left-0 w-full'>
             <Requirement requere={requirement} />
@@ -86,4 +141,4 @@ export const InputValid = forwardRef<HTMLInputElement, inputProps>(
   },
 );
 
-InputValid.displayName = 'InputValid';
+RegisterFormInput.displayName = 'RegisterFormInput';

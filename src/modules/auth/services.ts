@@ -1,5 +1,5 @@
 import { createHash } from 'crypto';
-import { prisma } from '@/infra/db';
+import { prismaLogin } from '@/infra/db';
 import { z } from 'zod';
 import { registerSchema } from './schemas';
 
@@ -15,7 +15,7 @@ export type RegisterData = z.infer<typeof registerSchema>;
 export const createUser = async (data: RegisterData) => {
   const shaPassWord = await sha1(data.password);
 
-  return await prisma.accounts.create({
+  return await prismaLogin.accounts.create({
     data: {
       name: data.name + ' ' + data.lastname,
       email: data.email,

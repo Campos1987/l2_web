@@ -52,7 +52,9 @@ const RegisterPage = () => {
     if (!isFormComplete) return;
 
     startTransition(async () => {
+      console.log(formData);
       const result = await registerUser(formData);
+      console.log(result);
 
       if (result.success) {
         alert(result.message); // Temporário: trocar por Toast

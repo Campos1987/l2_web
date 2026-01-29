@@ -1,5 +1,5 @@
 'use server';
-import { prisma } from '@/infra/db';
+import { prismaLogin } from '@/infra/db';
 import { validInputBdProps } from '@/types/validate';
 
 export const validInputBd = async ({
@@ -8,7 +8,7 @@ export const validInputBd = async ({
 }: validInputBdProps): Promise<boolean> => {
   try {
     if (value.length > 5) {
-      const validCell = await prisma.accounts.findFirst({
+      const validCell = await prismaLogin.accounts.findFirst({
         where: {
           [cell]: value,
         },

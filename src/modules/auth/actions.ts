@@ -32,7 +32,10 @@ export async function registerUser(
   );
   const captchaData = await captchaResponse.json();
   if (!captchaData.success) {
-    return { success: false, message: 'Falha na validação do captcha.' };
+    return {
+      success: false,
+      message: 'Falha na validação do captcha.',
+    };
   }
 
   try {

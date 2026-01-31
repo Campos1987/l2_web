@@ -17,18 +17,23 @@ model gk_about {
 }
 
 model gk_event {
-  id          Int      @id @default(autoincrement())
-  schedule    String?
-  title       String
-  description String?  @db.Text
-  slug        String   @unique
-  is_active   Boolean  @default(true)
-  type        String?
-  created_at  DateTime @default(now())
+  id         Int      @id @default(autoincrement())
+  schedule   String?
+  title      String
+  content    String?  @db.Text
+  slug       String   @unique
+  is_active  Boolean  @default(true)
+  type       String?
+  created_at DateTime @default(now())
 }
 
 model gk_news {
-  id      Int     @id @default(autoincrement())
-  title   String? @db.VarChar(50)
-  content String? @db.Text
+  id         Int      @id @default(autoincrement())
+  schedule   String?
+  title      String
+  content    String?  @db.Text
+  slug       String   @unique
+  is_active  Boolean  @default(true)
+  type       String?
+  created_at DateTime @default(now())
 }

@@ -63,12 +63,14 @@ section.hero .heroChar {
 }
 
 /* Variações de Categoria */
-.newsCard.team::before {
+.newsCard.team::before,
+.newsCard.event::before {
   background-color: var(--event-team);
   box-shadow: 0 0 8px var(--event-team);
 }
 
-.newsCard.siege::before {
+.newsCard.siege::before,
+.newsCard.maintenance::before {
   background-color: var(--event-siege);
   box-shadow: 0 0 8px var(--event-siege);
 }

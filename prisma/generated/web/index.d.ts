@@ -1971,7 +1971,7 @@ export namespace Prisma {
     id: number | null
     schedule: string | null
     title: string | null
-    description: string | null
+    content: string | null
     slug: string | null
     is_active: boolean | null
     type: string | null
@@ -1982,7 +1982,7 @@ export namespace Prisma {
     id: number | null
     schedule: string | null
     title: string | null
-    description: string | null
+    content: string | null
     slug: string | null
     is_active: boolean | null
     type: string | null
@@ -1993,7 +1993,7 @@ export namespace Prisma {
     id: number
     schedule: number
     title: number
-    description: number
+    content: number
     slug: number
     is_active: number
     type: number
@@ -2014,7 +2014,7 @@ export namespace Prisma {
     id?: true
     schedule?: true
     title?: true
-    description?: true
+    content?: true
     slug?: true
     is_active?: true
     type?: true
@@ -2025,7 +2025,7 @@ export namespace Prisma {
     id?: true
     schedule?: true
     title?: true
-    description?: true
+    content?: true
     slug?: true
     is_active?: true
     type?: true
@@ -2036,7 +2036,7 @@ export namespace Prisma {
     id?: true
     schedule?: true
     title?: true
-    description?: true
+    content?: true
     slug?: true
     is_active?: true
     type?: true
@@ -2134,7 +2134,7 @@ export namespace Prisma {
     id: number
     schedule: string | null
     title: string
-    description: string | null
+    content: string | null
     slug: string
     is_active: boolean
     type: string | null
@@ -2164,7 +2164,7 @@ export namespace Prisma {
     id?: boolean
     schedule?: boolean
     title?: boolean
-    description?: boolean
+    content?: boolean
     slug?: boolean
     is_active?: boolean
     type?: boolean
@@ -2177,14 +2177,14 @@ export namespace Prisma {
     id?: boolean
     schedule?: boolean
     title?: boolean
-    description?: boolean
+    content?: boolean
     slug?: boolean
     is_active?: boolean
     type?: boolean
     created_at?: boolean
   }
 
-  export type gk_eventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "schedule" | "title" | "description" | "slug" | "is_active" | "type" | "created_at", ExtArgs["result"]["gk_event"]>
+  export type gk_eventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "schedule" | "title" | "content" | "slug" | "is_active" | "type" | "created_at", ExtArgs["result"]["gk_event"]>
 
   export type $gk_eventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "gk_event"
@@ -2193,7 +2193,7 @@ export namespace Prisma {
       id: number
       schedule: string | null
       title: string
-      description: string | null
+      content: string | null
       slug: string
       is_active: boolean
       type: string | null
@@ -2570,7 +2570,7 @@ export namespace Prisma {
     readonly id: FieldRef<"gk_event", 'Int'>
     readonly schedule: FieldRef<"gk_event", 'String'>
     readonly title: FieldRef<"gk_event", 'String'>
-    readonly description: FieldRef<"gk_event", 'String'>
+    readonly content: FieldRef<"gk_event", 'String'>
     readonly slug: FieldRef<"gk_event", 'String'>
     readonly is_active: FieldRef<"gk_event", 'Boolean'>
     readonly type: FieldRef<"gk_event", 'String'>
@@ -2918,20 +2918,35 @@ export namespace Prisma {
 
   export type Gk_newsMinAggregateOutputType = {
     id: number | null
+    schedule: string | null
     title: string | null
     content: string | null
+    slug: string | null
+    is_active: boolean | null
+    type: string | null
+    created_at: Date | null
   }
 
   export type Gk_newsMaxAggregateOutputType = {
     id: number | null
+    schedule: string | null
     title: string | null
     content: string | null
+    slug: string | null
+    is_active: boolean | null
+    type: string | null
+    created_at: Date | null
   }
 
   export type Gk_newsCountAggregateOutputType = {
     id: number
+    schedule: number
     title: number
     content: number
+    slug: number
+    is_active: number
+    type: number
+    created_at: number
     _all: number
   }
 
@@ -2946,20 +2961,35 @@ export namespace Prisma {
 
   export type Gk_newsMinAggregateInputType = {
     id?: true
+    schedule?: true
     title?: true
     content?: true
+    slug?: true
+    is_active?: true
+    type?: true
+    created_at?: true
   }
 
   export type Gk_newsMaxAggregateInputType = {
     id?: true
+    schedule?: true
     title?: true
     content?: true
+    slug?: true
+    is_active?: true
+    type?: true
+    created_at?: true
   }
 
   export type Gk_newsCountAggregateInputType = {
     id?: true
+    schedule?: true
     title?: true
     content?: true
+    slug?: true
+    is_active?: true
+    type?: true
+    created_at?: true
     _all?: true
   }
 
@@ -3051,8 +3081,13 @@ export namespace Prisma {
 
   export type Gk_newsGroupByOutputType = {
     id: number
-    title: string | null
+    schedule: string | null
+    title: string
     content: string | null
+    slug: string
+    is_active: boolean
+    type: string | null
+    created_at: Date
     _count: Gk_newsCountAggregateOutputType | null
     _avg: Gk_newsAvgAggregateOutputType | null
     _sum: Gk_newsSumAggregateOutputType | null
@@ -3076,27 +3111,42 @@ export namespace Prisma {
 
   export type gk_newsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    schedule?: boolean
     title?: boolean
     content?: boolean
+    slug?: boolean
+    is_active?: boolean
+    type?: boolean
+    created_at?: boolean
   }, ExtArgs["result"]["gk_news"]>
 
 
 
   export type gk_newsSelectScalar = {
     id?: boolean
+    schedule?: boolean
     title?: boolean
     content?: boolean
+    slug?: boolean
+    is_active?: boolean
+    type?: boolean
+    created_at?: boolean
   }
 
-  export type gk_newsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content", ExtArgs["result"]["gk_news"]>
+  export type gk_newsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "schedule" | "title" | "content" | "slug" | "is_active" | "type" | "created_at", ExtArgs["result"]["gk_news"]>
 
   export type $gk_newsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "gk_news"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      title: string | null
+      schedule: string | null
+      title: string
       content: string | null
+      slug: string
+      is_active: boolean
+      type: string | null
+      created_at: Date
     }, ExtArgs["result"]["gk_news"]>
     composites: {}
   }
@@ -3467,8 +3517,13 @@ export namespace Prisma {
    */
   interface gk_newsFieldRefs {
     readonly id: FieldRef<"gk_news", 'Int'>
+    readonly schedule: FieldRef<"gk_news", 'String'>
     readonly title: FieldRef<"gk_news", 'String'>
     readonly content: FieldRef<"gk_news", 'String'>
+    readonly slug: FieldRef<"gk_news", 'String'>
+    readonly is_active: FieldRef<"gk_news", 'Boolean'>
+    readonly type: FieldRef<"gk_news", 'String'>
+    readonly created_at: FieldRef<"gk_news", 'DateTime'>
   }
     
 
@@ -3663,7 +3718,7 @@ export namespace Prisma {
     /**
      * The data needed to create a gk_news.
      */
-    data?: XOR<gk_newsCreateInput, gk_newsUncheckedCreateInput>
+    data: XOR<gk_newsCreateInput, gk_newsUncheckedCreateInput>
   }
 
   /**
@@ -3820,7 +3875,7 @@ export namespace Prisma {
     id: 'id',
     schedule: 'schedule',
     title: 'title',
-    description: 'description',
+    content: 'content',
     slug: 'slug',
     is_active: 'is_active',
     type: 'type',
@@ -3832,8 +3887,13 @@ export namespace Prisma {
 
   export const Gk_newsScalarFieldEnum: {
     id: 'id',
+    schedule: 'schedule',
     title: 'title',
-    content: 'content'
+    content: 'content',
+    slug: 'slug',
+    is_active: 'is_active',
+    type: 'type',
+    created_at: 'created_at'
   };
 
   export type Gk_newsScalarFieldEnum = (typeof Gk_newsScalarFieldEnum)[keyof typeof Gk_newsScalarFieldEnum]
@@ -3867,7 +3927,7 @@ export namespace Prisma {
   export const gk_eventOrderByRelevanceFieldEnum: {
     schedule: 'schedule',
     title: 'title',
-    description: 'description',
+    content: 'content',
     slug: 'slug',
     type: 'type'
   };
@@ -3876,8 +3936,11 @@ export namespace Prisma {
 
 
   export const gk_newsOrderByRelevanceFieldEnum: {
+    schedule: 'schedule',
     title: 'title',
-    content: 'content'
+    content: 'content',
+    slug: 'slug',
+    type: 'type'
   };
 
   export type gk_newsOrderByRelevanceFieldEnum = (typeof gk_newsOrderByRelevanceFieldEnum)[keyof typeof gk_newsOrderByRelevanceFieldEnum]
@@ -3993,7 +4056,7 @@ export namespace Prisma {
     id?: IntFilter<"gk_event"> | number
     schedule?: StringNullableFilter<"gk_event"> | string | null
     title?: StringFilter<"gk_event"> | string
-    description?: StringNullableFilter<"gk_event"> | string | null
+    content?: StringNullableFilter<"gk_event"> | string | null
     slug?: StringFilter<"gk_event"> | string
     is_active?: BoolFilter<"gk_event"> | boolean
     type?: StringNullableFilter<"gk_event"> | string | null
@@ -4004,7 +4067,7 @@ export namespace Prisma {
     id?: SortOrder
     schedule?: SortOrderInput | SortOrder
     title?: SortOrder
-    description?: SortOrderInput | SortOrder
+    content?: SortOrderInput | SortOrder
     slug?: SortOrder
     is_active?: SortOrder
     type?: SortOrderInput | SortOrder
@@ -4020,7 +4083,7 @@ export namespace Prisma {
     NOT?: gk_eventWhereInput | gk_eventWhereInput[]
     schedule?: StringNullableFilter<"gk_event"> | string | null
     title?: StringFilter<"gk_event"> | string
-    description?: StringNullableFilter<"gk_event"> | string | null
+    content?: StringNullableFilter<"gk_event"> | string | null
     is_active?: BoolFilter<"gk_event"> | boolean
     type?: StringNullableFilter<"gk_event"> | string | null
     created_at?: DateTimeFilter<"gk_event"> | Date | string
@@ -4030,7 +4093,7 @@ export namespace Prisma {
     id?: SortOrder
     schedule?: SortOrderInput | SortOrder
     title?: SortOrder
-    description?: SortOrderInput | SortOrder
+    content?: SortOrderInput | SortOrder
     slug?: SortOrder
     is_active?: SortOrder
     type?: SortOrderInput | SortOrder
@@ -4049,7 +4112,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"gk_event"> | number
     schedule?: StringNullableWithAggregatesFilter<"gk_event"> | string | null
     title?: StringWithAggregatesFilter<"gk_event"> | string
-    description?: StringNullableWithAggregatesFilter<"gk_event"> | string | null
+    content?: StringNullableWithAggregatesFilter<"gk_event"> | string | null
     slug?: StringWithAggregatesFilter<"gk_event"> | string
     is_active?: BoolWithAggregatesFilter<"gk_event"> | boolean
     type?: StringNullableWithAggregatesFilter<"gk_event"> | string | null
@@ -4061,30 +4124,50 @@ export namespace Prisma {
     OR?: gk_newsWhereInput[]
     NOT?: gk_newsWhereInput | gk_newsWhereInput[]
     id?: IntFilter<"gk_news"> | number
-    title?: StringNullableFilter<"gk_news"> | string | null
+    schedule?: StringNullableFilter<"gk_news"> | string | null
+    title?: StringFilter<"gk_news"> | string
     content?: StringNullableFilter<"gk_news"> | string | null
+    slug?: StringFilter<"gk_news"> | string
+    is_active?: BoolFilter<"gk_news"> | boolean
+    type?: StringNullableFilter<"gk_news"> | string | null
+    created_at?: DateTimeFilter<"gk_news"> | Date | string
   }
 
   export type gk_newsOrderByWithRelationInput = {
     id?: SortOrder
-    title?: SortOrderInput | SortOrder
+    schedule?: SortOrderInput | SortOrder
+    title?: SortOrder
     content?: SortOrderInput | SortOrder
+    slug?: SortOrder
+    is_active?: SortOrder
+    type?: SortOrderInput | SortOrder
+    created_at?: SortOrder
     _relevance?: gk_newsOrderByRelevanceInput
   }
 
   export type gk_newsWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    slug?: string
     AND?: gk_newsWhereInput | gk_newsWhereInput[]
     OR?: gk_newsWhereInput[]
     NOT?: gk_newsWhereInput | gk_newsWhereInput[]
-    title?: StringNullableFilter<"gk_news"> | string | null
+    schedule?: StringNullableFilter<"gk_news"> | string | null
+    title?: StringFilter<"gk_news"> | string
     content?: StringNullableFilter<"gk_news"> | string | null
-  }, "id">
+    is_active?: BoolFilter<"gk_news"> | boolean
+    type?: StringNullableFilter<"gk_news"> | string | null
+    created_at?: DateTimeFilter<"gk_news"> | Date | string
+  }, "id" | "slug">
 
   export type gk_newsOrderByWithAggregationInput = {
     id?: SortOrder
-    title?: SortOrderInput | SortOrder
+    schedule?: SortOrderInput | SortOrder
+    title?: SortOrder
     content?: SortOrderInput | SortOrder
+    slug?: SortOrder
+    is_active?: SortOrder
+    type?: SortOrderInput | SortOrder
+    created_at?: SortOrder
     _count?: gk_newsCountOrderByAggregateInput
     _avg?: gk_newsAvgOrderByAggregateInput
     _max?: gk_newsMaxOrderByAggregateInput
@@ -4097,8 +4180,13 @@ export namespace Prisma {
     OR?: gk_newsScalarWhereWithAggregatesInput[]
     NOT?: gk_newsScalarWhereWithAggregatesInput | gk_newsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"gk_news"> | number
-    title?: StringNullableWithAggregatesFilter<"gk_news"> | string | null
+    schedule?: StringNullableWithAggregatesFilter<"gk_news"> | string | null
+    title?: StringWithAggregatesFilter<"gk_news"> | string
     content?: StringNullableWithAggregatesFilter<"gk_news"> | string | null
+    slug?: StringWithAggregatesFilter<"gk_news"> | string
+    is_active?: BoolWithAggregatesFilter<"gk_news"> | boolean
+    type?: StringNullableWithAggregatesFilter<"gk_news"> | string | null
+    created_at?: DateTimeWithAggregatesFilter<"gk_news"> | Date | string
   }
 
   export type gk_aboutCreateInput = {
@@ -4164,7 +4252,7 @@ export namespace Prisma {
   export type gk_eventCreateInput = {
     schedule?: string | null
     title: string
-    description?: string | null
+    content?: string | null
     slug: string
     is_active?: boolean
     type?: string | null
@@ -4175,7 +4263,7 @@ export namespace Prisma {
     id?: number
     schedule?: string | null
     title: string
-    description?: string | null
+    content?: string | null
     slug: string
     is_active?: boolean
     type?: string | null
@@ -4185,7 +4273,7 @@ export namespace Prisma {
   export type gk_eventUpdateInput = {
     schedule?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
     is_active?: BoolFieldUpdateOperationsInput | boolean
     type?: NullableStringFieldUpdateOperationsInput | string | null
@@ -4196,7 +4284,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     schedule?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
     is_active?: BoolFieldUpdateOperationsInput | boolean
     type?: NullableStringFieldUpdateOperationsInput | string | null
@@ -4207,7 +4295,7 @@ export namespace Prisma {
     id?: number
     schedule?: string | null
     title: string
-    description?: string | null
+    content?: string | null
     slug: string
     is_active?: boolean
     type?: string | null
@@ -4217,7 +4305,7 @@ export namespace Prisma {
   export type gk_eventUpdateManyMutationInput = {
     schedule?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
     is_active?: BoolFieldUpdateOperationsInput | boolean
     type?: NullableStringFieldUpdateOperationsInput | string | null
@@ -4228,7 +4316,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     schedule?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
     is_active?: BoolFieldUpdateOperationsInput | boolean
     type?: NullableStringFieldUpdateOperationsInput | string | null
@@ -4236,42 +4324,77 @@ export namespace Prisma {
   }
 
   export type gk_newsCreateInput = {
-    title?: string | null
+    schedule?: string | null
+    title: string
     content?: string | null
+    slug: string
+    is_active?: boolean
+    type?: string | null
+    created_at?: Date | string
   }
 
   export type gk_newsUncheckedCreateInput = {
     id?: number
-    title?: string | null
+    schedule?: string | null
+    title: string
     content?: string | null
+    slug: string
+    is_active?: boolean
+    type?: string | null
+    created_at?: Date | string
   }
 
   export type gk_newsUpdateInput = {
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    schedule?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type gk_newsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    schedule?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type gk_newsCreateManyInput = {
     id?: number
-    title?: string | null
+    schedule?: string | null
+    title: string
     content?: string | null
+    slug: string
+    is_active?: boolean
+    type?: string | null
+    created_at?: Date | string
   }
 
   export type gk_newsUpdateManyMutationInput = {
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    schedule?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type gk_newsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    schedule?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -4461,7 +4584,7 @@ export namespace Prisma {
     id?: SortOrder
     schedule?: SortOrder
     title?: SortOrder
-    description?: SortOrder
+    content?: SortOrder
     slug?: SortOrder
     is_active?: SortOrder
     type?: SortOrder
@@ -4476,7 +4599,7 @@ export namespace Prisma {
     id?: SortOrder
     schedule?: SortOrder
     title?: SortOrder
-    description?: SortOrder
+    content?: SortOrder
     slug?: SortOrder
     is_active?: SortOrder
     type?: SortOrder
@@ -4487,7 +4610,7 @@ export namespace Prisma {
     id?: SortOrder
     schedule?: SortOrder
     title?: SortOrder
-    description?: SortOrder
+    content?: SortOrder
     slug?: SortOrder
     is_active?: SortOrder
     type?: SortOrder
@@ -4506,8 +4629,13 @@ export namespace Prisma {
 
   export type gk_newsCountOrderByAggregateInput = {
     id?: SortOrder
+    schedule?: SortOrder
     title?: SortOrder
     content?: SortOrder
+    slug?: SortOrder
+    is_active?: SortOrder
+    type?: SortOrder
+    created_at?: SortOrder
   }
 
   export type gk_newsAvgOrderByAggregateInput = {
@@ -4516,14 +4644,24 @@ export namespace Prisma {
 
   export type gk_newsMaxOrderByAggregateInput = {
     id?: SortOrder
+    schedule?: SortOrder
     title?: SortOrder
     content?: SortOrder
+    slug?: SortOrder
+    is_active?: SortOrder
+    type?: SortOrder
+    created_at?: SortOrder
   }
 
   export type gk_newsMinOrderByAggregateInput = {
     id?: SortOrder
+    schedule?: SortOrder
     title?: SortOrder
     content?: SortOrder
+    slug?: SortOrder
+    is_active?: SortOrder
+    type?: SortOrder
+    created_at?: SortOrder
   }
 
   export type gk_newsSumOrderByAggregateInput = {

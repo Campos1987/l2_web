@@ -105,7 +105,7 @@ exports.Prisma.Gk_eventScalarFieldEnum = {
   id: 'id',
   schedule: 'schedule',
   title: 'title',
-  description: 'description',
+  content: 'content',
   slug: 'slug',
   is_active: 'is_active',
   type: 'type',
@@ -114,8 +114,13 @@ exports.Prisma.Gk_eventScalarFieldEnum = {
 
 exports.Prisma.Gk_newsScalarFieldEnum = {
   id: 'id',
+  schedule: 'schedule',
   title: 'title',
-  content: 'content'
+  content: 'content',
+  slug: 'slug',
+  is_active: 'is_active',
+  type: 'type',
+  created_at: 'created_at'
 };
 
 exports.Prisma.SortOrder = {
@@ -137,14 +142,17 @@ exports.Prisma.gk_aboutOrderByRelevanceFieldEnum = {
 exports.Prisma.gk_eventOrderByRelevanceFieldEnum = {
   schedule: 'schedule',
   title: 'title',
-  description: 'description',
+  content: 'content',
   slug: 'slug',
   type: 'type'
 };
 
 exports.Prisma.gk_newsOrderByRelevanceFieldEnum = {
+  schedule: 'schedule',
   title: 'title',
-  content: 'content'
+  content: 'content',
+  slug: 'slug',
+  type: 'type'
 };
 
 
@@ -161,10 +169,10 @@ const config = {
   "clientVersion": "7.3.0",
   "engineVersion": "9d6ad21cbbceab97458517b147a6a09ff43aa735",
   "activeProvider": "mysql",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/web\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nmodel gk_about {\n  id          Int      @id @default(autoincrement())\n  title       String\n  description String?  @db.Text\n  is_active   Boolean  @default(true)\n  created_at  DateTime @default(now())\n  image       String\n}\n\nmodel gk_event {\n  id          Int      @id @default(autoincrement())\n  schedule    String?\n  title       String\n  description String?  @db.Text\n  slug        String   @unique\n  is_active   Boolean  @default(true)\n  type        String?\n  created_at  DateTime @default(now())\n}\n\nmodel gk_news {\n  id      Int     @id @default(autoincrement())\n  title   String? @db.VarChar(50)\n  content String? @db.Text\n}\n"
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/web\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nmodel gk_about {\n  id          Int      @id @default(autoincrement())\n  title       String\n  description String?  @db.Text\n  is_active   Boolean  @default(true)\n  created_at  DateTime @default(now())\n  image       String\n}\n\nmodel gk_event {\n  id         Int      @id @default(autoincrement())\n  schedule   String?\n  title      String\n  content    String?  @db.Text\n  slug       String   @unique\n  is_active  Boolean  @default(true)\n  type       String?\n  created_at DateTime @default(now())\n}\n\nmodel gk_news {\n  id         Int      @id @default(autoincrement())\n  schedule   String?\n  title      String\n  content    String?  @db.Text\n  slug       String   @unique\n  is_active  Boolean  @default(true)\n  type       String?\n  created_at DateTime @default(now())\n}\n"
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"gk_about\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"is_active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"image\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"gk_event\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"schedule\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"is_active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"gk_news\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"gk_about\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"is_active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"image\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"gk_event\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"schedule\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"is_active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"gk_news\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"schedule\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"is_active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.compilerWasm = {
   getRuntime: async () => require('./query_compiler_fast_bg.js'),

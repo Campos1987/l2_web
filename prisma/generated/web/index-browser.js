@@ -133,7 +133,7 @@ exports.Prisma.Gk_eventScalarFieldEnum = {
   id: 'id',
   schedule: 'schedule',
   title: 'title',
-  description: 'description',
+  content: 'content',
   slug: 'slug',
   is_active: 'is_active',
   type: 'type',
@@ -142,8 +142,13 @@ exports.Prisma.Gk_eventScalarFieldEnum = {
 
 exports.Prisma.Gk_newsScalarFieldEnum = {
   id: 'id',
+  schedule: 'schedule',
   title: 'title',
-  content: 'content'
+  content: 'content',
+  slug: 'slug',
+  is_active: 'is_active',
+  type: 'type',
+  created_at: 'created_at'
 };
 
 exports.Prisma.SortOrder = {
@@ -165,14 +170,17 @@ exports.Prisma.gk_aboutOrderByRelevanceFieldEnum = {
 exports.Prisma.gk_eventOrderByRelevanceFieldEnum = {
   schedule: 'schedule',
   title: 'title',
-  description: 'description',
+  content: 'content',
   slug: 'slug',
   type: 'type'
 };
 
 exports.Prisma.gk_newsOrderByRelevanceFieldEnum = {
+  schedule: 'schedule',
   title: 'title',
-  content: 'content'
+  content: 'content',
+  slug: 'slug',
+  type: 'type'
 };
 
 

@@ -10,12 +10,21 @@ type PrismaFindMany = (args: {
   select?: Record<string, boolean>;
 }) => Promise<unknown[]>;
 
+const SIMULATE_WAIT_IN_MS = 5000;
+
+const simulatewait = async () => {
+  if (SIMULATE_WAIT_IN_MS <= 0) return;
+
+  await new Promise(resolve => setTimeout(resolve, SIMULATE_WAIT_IN_MS));
+};
+
 export const queryServiceWeb = async ({
   entity,
   limit,
   orderBy,
   direction,
 }: queryServiceWebProps) => {
+  await simulatewait();
   //Criamos um mapa de consulta
   // Isso associa a string ao modelo real do Prisma
   const modelMap: Record<string, { findMany: PrismaFindMany }> = {

@@ -1,12 +1,12 @@
 {
   "banner1": {
-    "image": "banner_1",
-    "label": "title-1",
-    "description": "teste-1 teste-1 teste-1"
+    "image": "dungeon",
+    "label": "dungeon",
+    "description": "Em meio às terras épicas de Lineage II, um novo desafio aguarda aqueles que buscam glória, poder e recompensas lendárias.Nosso servidor traz dungeons exclusivas, criadas especialmente para proporcionar uma experiência única, com mapas inéditos, mecânicas diferenciadas e batalhas que exigem estratégia, união e coragem.Prepare seu grupo, fortaleça seus equipamentos e esteja pronto para enfrentar:"
   },
   "banner2": {
-    "image": "banner_2",
-    "label": "title-2",
+    "image": "dungeon2",
+    "label": "Human",
     "description": "teste-1 teste-1 teste-1"
   }
 }

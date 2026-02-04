@@ -43,32 +43,29 @@ const Carousel = ({ data }: CarouselProps) => {
       <div
         ref={carouselRef}
         id='carousel'
-        className='w-full h-full overflow-hidden scroll-smooth'
+        className='w-full h-150 overflow-hidden scroll-smooth'
       >
-        <ul className='flex w-full p-0 m-0'>
+        <ul className='flex w-full h-full p-0 m-0'>
           {' '}
           {/* 1. Remove padding da lista */}
           {slides.map(([key, item]) => (
-            <li
-              key={key}
-              className='min-w-full relative flex flex-col justify-start items-center m-0 p-0 leading-none'
-            >
-              <Image
-                src={`/images/carousel/${item.image}.jpg`}
-                alt={item.label}
-                width={1920}
-                height={600}
-                sizes='100vw'
-                className='w-full h-auto block object-contain -z-10'
-                unoptimized={true} // <--- Desativa redenizaçao tempoararia
-              />
-              {/* Seus textos absolutos continuam aqui... */}
-              <h2 className='absolute top-1/3 text-5xl font-extrabold uppercase tracking-wider text-wizard-text drop-shadow-[0_4px_4px_rgba(0,0,0,0.9)]'>
-                {item.label}
-              </h2>
-              <p className='absolute top-1/2 mt-2 text-xl font-medium text-gray-100 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] max-w-[80%]'>
-                {item.description}
-              </p>
+            <li key={key} className='min-w-full h-full grid grid-cols-2'>
+              <div className='col-span-1 content-center justify-items-center p-24'>
+                <h1>{item.label}</h1>
+                <p>{item.description}</p>
+              </div>
+              <div className='relative h-full w-full col-span-1'>
+                {' '}
+                {/* Container para controlar a imagem */}
+                <Image
+                  src={`/images/carousel/about/${item.image}.png`}
+                  alt={item.label}
+                  fill
+                  className='object-contain object-center'
+                  sizes='(max-width: 768px) 100vw, 50vw'
+                  unoptimized={true}
+                />
+              </div>
             </li>
           ))}
         </ul>

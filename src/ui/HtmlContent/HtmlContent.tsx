@@ -5,8 +5,8 @@ type GenericHtmlProps = {
   children: ReactNode;
 };
 
-const GenericHtml = ({ children }: GenericHtmlProps) => {
+const HtmlContent = ({ children }: GenericHtmlProps) => {
   return <div className={style.genericHtml}>{children}</div>;
 };
 
-export default GenericHtml;
+export default HtmlContent;

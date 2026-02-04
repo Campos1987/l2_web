@@ -1,12 +1,19 @@
+/* Dispositivo	Breakpoint	Largura de Tela (Px)	Uso Principal
+Mobile	sm	640px	Smartphones em modo retrato.
+Tablet	md	768px	iPads e tablets Android.
+Laptop	lg	1024px	Laptops comuns e tablets em modo paisagem.
+Desktop	xl	1280px	Monitores padrão de desktop.
+UltraWide	2xl	1536px+	Monitores grandes ou 4K. */
+
 @import 'tailwindcss';
 
 :root {
   --background: #10141b;
-  --foreground: #fff;
+  --foreground: #ddd;
 
   --primary: #00001b;
 
-  --gold-primary: #d4af37;
+  --gold-primary: #ffc857;
   --gold-secondary: #997b38;
 
   --disabled: #01010c;
@@ -16,6 +23,9 @@
   --event-siege: #e74c3c;
   --event-territory: #3498db;
   --event-olympiad: #a855f7;
+
+  --container-bg: #1c212b;
+  --container-border: #333;
 }
 
 @theme inline {
@@ -36,12 +46,16 @@
   --color-event-siege: var(--event-siege);
   --color-event-territory: var(--event-territory);
   --color-event-olympiad: var(--event-olympiad);
+
+  --color-bg-container: var(--container-bg);
+  --color-border-container: var(--container-border);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
 }
 
 h1 {
@@ -57,6 +71,13 @@ h2 {
   font-size: 1.125rem;
   font-weight: 600;
 }
+
+section {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
 .container {
   border-radius: 12px;
   border: 1px solid #262626;

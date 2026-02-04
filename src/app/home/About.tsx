@@ -1,7 +1,7 @@
 import Carousel from '@/ui/Carousel/Carousel';
 import carouselAbout from '@/lib/carouselAbout';
 
-const AboutServer = () => {
+const AboutHome = () => {
   const structure = carouselAbout('aboutHome');
   return (
     <section className='h-full py-6'>
@@ -10,4 +10,4 @@ const AboutServer = () => {
   );
 };
 
-export default AboutServer;
+export default AboutHome;

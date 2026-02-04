@@ -1,7 +1,6 @@
-import { creatDescriptionProps } from '@/types/layout';
 import matter from 'gray-matter';
 
-const creatDescription = (content: creatDescriptionProps) => {
+const creatDescription = (content: string) => {
   const { data } = matter(content);
   return data.description;
 };

@@ -1,0 +1,16 @@
+.logo-loading-mana {
+  animation: mana-pulse 2s infinite ease-in-out;
+  filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5)); /* Brilho dourado */
+}
+
+@keyframes mana-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5)) brightness(1);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)) brightness(1.2);
+  }
+}

@@ -8,6 +8,11 @@ export type CarouselProps = {
   data: Record<string, CarouselItem> | null; // Adicionei null para segurança
 };
 
-export interface creatDescriptionProps {
-  content: string;
+export interface LoadingSuspenseProps {
+  children: React.ReactNode;
+  type?: string;
+}
+
+export interface LogoProps {
+  className?: string; // A interrogação torna opcional
 }

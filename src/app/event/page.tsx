@@ -1,18 +1,15 @@
-import { Calendar } from 'lucide-react';
 import LoadingSuspense from '@/ui/LoadingSuspense/LoadingSuspense';
-import EventList from './EventList';
+import { Calendar } from 'lucide-react';
+import EventList from './eventList';
 
 const EventServer = () => {
   return (
-    <section className='h-full px-6 lg:px-12'>
+    <section className='max-w-5xl m-auto h-full p-8'>
       <h1 className='flex items-center gap-3'>
         <Calendar size={35} /> Event
       </h1>
-
-      <div
-        className={`m-auto grid grid-cols-1 gap-4 lg:w-full lg:gap-8 xl:gap-12 lg:grid-cols-3 py-8`}
-      >
-        <LoadingSuspense type='card'>
+      <div className={`m-auto grid grid-cols-1 gap-4 py-8`}>
+        <LoadingSuspense>
           <EventList />
         </LoadingSuspense>
       </div>

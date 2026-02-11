@@ -1,6 +1,13 @@
+/**
+ * 💀 Card Skeleton Component
+ *
+ * Placeholder de carregamento para cards de eventos/notícias.
+ * Simula visualmente o layout do card enquanto os dados são carregados.
+ * Usa efeitos de blur para suavizar a transição.
+ */
+
 import Image from 'next/image';
 
-// components/CardSkeleton.tsx
 export default function CardSkeleton() {
   return (
     <article className='items-center lg:items-start bg-event-container'>

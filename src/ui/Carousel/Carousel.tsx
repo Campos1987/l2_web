@@ -1,4 +1,17 @@
+/**
+ * 🎠 Carousel UI Component
+ *
+ * Componente genérico de Carrossel (Slider).
+ *
+ * Funcionalidades:
+ * - Navegação Manual (Next/Prev).
+ * - Scroll suave usando CSS Scroll Snap logic (wrapper 'scroll-smooth').
+ * - Controle de estado (dot indicators).
+ * - Imagens otimizadas (Next/Image).
+ */
+
 'use client';
+
 import { CarouselProps } from '@/types/layout';
 import { CircleArrowLeft, CircleArrowRight } from 'lucide-react';
 import { useRef, useState } from 'react';
@@ -11,6 +24,7 @@ const Carousel = ({ data }: CarouselProps) => {
   const slides = Object.entries(data || {});
   const itemsCount = slides.length;
 
+  // Navegação: Calcula o width do container e faz scroll para o index * width
   const handleNext = () => {
     if (carouselRef.current) {
       const width = carouselRef.current.offsetWidth;
@@ -39,7 +53,7 @@ const Carousel = ({ data }: CarouselProps) => {
 
   return (
     <div className='w-full relative'>
-      {/* área rolável */}
+      {/* Área rolável (Viewport) */}
       <div
         ref={carouselRef}
         id='carousel'
@@ -50,20 +64,23 @@ const Carousel = ({ data }: CarouselProps) => {
           {/* 1. Remove padding da lista */}
           {slides.map(([key, item]) => (
             <li key={key} className='min-w-full h-full grid grid-cols-2'>
+              {/* Texto/Descrição */}
               <div className='col-span-1 content-center justify-items-center p-24'>
-                <h1>{item.label}</h1>
+                <h1 className='font-bold text-4xl mb-8'>{item.label}</h1>
                 <p>{item.description}</p>
               </div>
+
+              {/* Imagem */}
               <div className='relative h-full w-full col-span-1'>
                 {' '}
-                {/* Container para controlar a imagem */}
+                {/* Container para controlar a imagem (fill) */}
                 <Image
                   src={`/images/carousel/about/${item.image}.png`}
                   alt={item.label}
                   fill
                   className='object-contain object-center'
                   sizes='(max-width: 768px) 100vw, 50vw'
-                  unoptimized={true}
+                  unoptimized={true} // TODO: Avaliar necessidade de unoptimized
                 />
               </div>
             </li>
@@ -71,7 +88,7 @@ const Carousel = ({ data }: CarouselProps) => {
         </ul>
       </div>
 
-      {/* controles alinhados */}
+      {/* Controles de Navegação (Overlay inferior) */}
       <div className='bg-black rounded-3xl border border-gold-primary absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1 z-10'>
         <button
           onClick={handlePrev}
@@ -80,7 +97,7 @@ const Carousel = ({ data }: CarouselProps) => {
           <CircleArrowLeft size={20} />
         </button>
 
-        {/* esferas */}
+        {/* Indicadores (Dots) */}
         <div className='flex gap-2'>
           {slides.map((_, i) => (
             <div

@@ -1,8 +1,16 @@
-import styles from './Button.module.css';
+/**
+ * 🔘 Button UI Component
+ *
+ * Componente base de botão.
+ * Suporta variantes via CSS Modules e variante específica 'btnHero'.
+ */
 
+import styles from './Button.module.css';
 import { ButtonProps } from '@/types/navegation';
 
 const Button = ({ className, ...props }: ButtonProps) => {
+  // Variante Especial: Hero Call-to-Action
+  // TODO: Refatorar para usar 'variant' prop em vez de className string checking
   if (className === 'btnHero') {
     return (
       <>
@@ -14,6 +22,8 @@ const Button = ({ className, ...props }: ButtonProps) => {
       </>
     );
   }
+
+  // Default Button (styled via class composition from modules)
   return (
     <button className={styles[className || 'default']}>{props.children}</button>
   );

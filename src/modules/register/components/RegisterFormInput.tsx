@@ -1,10 +1,32 @@
-import { inputProps, requirementProp, ValidCell } from '@/types/validate';
+/**
+ * 🎨 Register Module - RegisterFormInput Component
+ *
+ * Componente de Input especializado para o fluxo de REGISTRO.
+ * Diferente do login simples, este valida regras complexas de criação (complexidade de senha, disponibilidade de login).
+ *
+ * Features:
+ * - ✨ Feedback visual imediato (Lista de requisitos)
+ * - 🔍 Validação "onBlur" para verificar disponibilidade no banco (ex: Login já existe?)
+ * - 👁️ Show/Hide password
+ * - ♿ Acessibilidade
+ */
+
+import {
+  inputRegisterProps,
+  requirementProp,
+  ValidCell,
+} from '@/types/validate';
 import { validInput } from '@/lib/validation/Validate';
 import { Check, Eye, EyeOff } from 'lucide-react';
 import { forwardRef, useEffect, useState } from 'react';
 import { MAP_TEXT } from '@/lib/validation/validation';
 import { validInputBd } from '@/lib/validation/validInputBd';
 import Link from 'next/link';
+
+// ----------------------------------------------------------------------
+// 🧩 Validation Feedback Logic
+// ----------------------------------------------------------------------
+// Mostra o popover com checklist de requisitos atendidos vs pendentes.
 
 const Requirement = ({ requere }: requirementProp) => {
   return (
@@ -33,26 +55,41 @@ const Requirement = ({ requere }: requirementProp) => {
   );
 };
 
-export const RegisterFormInput = forwardRef<HTMLInputElement, inputProps>(
+// ----------------------------------------------------------------------
+// 🚀 Main Component: RegisterFormInput
+// ----------------------------------------------------------------------
+
+export const RegisterFormInput = forwardRef<
+  HTMLInputElement,
+  inputRegisterProps
+>(
   (
     { validation, value, name, onChange, onValidationChange, ...props },
     ref,
   ) => {
+    // --- Local State ---
     const [isFocused, setIsFocused] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+
+    // --- Computed ---
     const safeValue = value ? String(value) : '';
     const safeName = name ? String(name) : '';
     const isPasswordType = props.type === 'password';
 
+    // Hook de validação pura do front (Regras estáticas)
     const requirement = validInput({
       inputValue: safeValue,
       inputName: safeName,
       validation: validation,
     });
 
+    // Estado da validação remota (Banco de Dados)
     const [hasValueBd, setHasValueBd] = useState(false);
 
+    // --- Validation Handler ---
+    // Verifica disponibilidade do login/email no servidor
     const handleBlurValidation = async () => {
+      // Otimização: Não valida no backend se já estiver inválido localmente ou vazio
       if (!safeValue || hasErrors) {
         setHasValueBd(false);
         return;
@@ -65,19 +102,28 @@ export const RegisterFormInput = forwardRef<HTMLInputElement, inputProps>(
 
       if (existe) {
         setHasValueBd(true);
+        // Invalida o form se o dado já existir (duplicado)
         onValidationChange?.(false);
       } else {
         setHasValueBd(false);
       }
     };
 
+    // --- Helpers ---
     const capitalizedName =
       safeName.charAt(0).toUpperCase() + safeName.slice(1);
     const errorKey = `validBd${capitalizedName}` as keyof typeof MAP_TEXT;
+
+    // Flags de Estado
     const isAllValid = Object.values(requirement).every(item => item.isValid);
     const hasErrors = Object.values(requirement).some(res => !res.isValid);
     const showRequirements = isFocused && safeValue.length > 0;
+
+    // Estado final de validade
     const totalValid = isAllValid && !hasValueBd;
+
+    // --- Effects ---
+    // Comunica estado de validação ao formulário pai
 
     useEffect(() => {
       onValidationChange?.(totalValid);
@@ -99,14 +145,16 @@ export const RegisterFormInput = forwardRef<HTMLInputElement, inputProps>(
           onFocus={() => setIsFocused(true)}
           onBlur={async () => {
             setIsFocused(false);
-            await handleBlurValidation();
+            await handleBlurValidation(); // Trigger validação remota ao sair do campo
           }}
           className={`${props.className} transition-colors ${
             safeValue && (hasErrors || hasValueBd)
-              ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
+              ? 'border-red-500 focus:border-red-500 focus:ring-red-500' // Visual de Erro
               : ''
           }`}
         />
+
+        {/* Toggle Password */}
         {isPasswordType && (
           <button
             type='button'
@@ -117,9 +165,11 @@ export const RegisterFormInput = forwardRef<HTMLInputElement, inputProps>(
           </button>
         )}
 
+        {/* Mensagem de erro do Backend (Duplicidade) */}
         {hasValueBd && !isFocused && (
           <div className='absolute z-10 top-full -mt-1 rounded-b-xl px-3 py-1 text-sm left-0 w-full bg-bg-error'>
             {errorKey && MAP_TEXT[errorKey]}
+            {/* Atalho para recuperação de conta se email já existe */}
             {errorKey === 'validBdEmail' && (
               <Link
                 href='/forgotPassword'
@@ -131,6 +181,7 @@ export const RegisterFormInput = forwardRef<HTMLInputElement, inputProps>(
           </div>
         )}
 
+        {/* Popover de Requisitos */}
         {showRequirements && (
           <div className='absolute top-full mt-2 left-0 w-full'>
             <Requirement requere={requirement} />

@@ -1,3 +1,11 @@
+/**
+ * 🦶 Footer UI Component
+ *
+ * Rodapé global da aplicação.
+ * Contém links legais e copyright.
+ * Estilizado via CSS Modules (`Footer.module.css`).
+ */
+
 import styles from './styles.module.css';
 
 const Footer = () => {

@@ -22,7 +22,7 @@ model gk_event {
   title      String
   content    String?  @db.Text
   slug       String   @unique
-  is_active  Boolean  @default(true)
+  is_active  Boolean  @default(dbgenerated("(b'1')")) @db.Bit(1)
   type       String?
   created_at DateTime @default(now())
 }

@@ -1,10 +1,25 @@
+/**
+ * 📋 Register Form Component
+ *
+ * Componente principal do fluxo de registro.
+ * Muito mais denso que o Login, pois lida com múltiplos campos e regras de validação cruzada.
+ *
+ * Stack:
+ * - Client Component (Interatividade total)
+ * - useTransition (Pending States para Server Actions)
+ * - ReCAPTCHA Check
+ * - Custom Validation Engine (RegisterFormInput integration)
+ */
+
 'use client';
-import { registerUser } from '@/modules/auth/actions';
-import { RegisterFormInput } from '@/modules/auth/components/RegisterFormInput';
+
+import { registerUser } from '@/modules/register/actions';
+import { RegisterFormInput } from '@/modules/register/components/RegisterFormInput';
 import { useState, useTransition } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 const RegisterForm = () => {
+  // --- Form State ---
   const [formData, setFormData] = useState({
     name: '',
     lastname: '',
@@ -15,6 +30,9 @@ const RegisterForm = () => {
     captchaToken: '',
   });
 
+  // --- Validation State ---
+  // Rastreia a validade de cada campo individualmente.
+  // O botão de cadastro só é liberado quando tudos forem true.
   const [formValid, setFormValid] = useState<Record<string, boolean>>({
     name: false,
     lastname: false,
@@ -32,6 +50,7 @@ const RegisterForm = () => {
     }));
   }
 
+  // --- Captcha Handler ---
   const handleCaptcha = (token: string | null) => {
     if (token) {
       setFormData(prev => ({ ...prev, captchaToken: token }));
@@ -42,28 +61,35 @@ const RegisterForm = () => {
     }
   };
 
+  // Verifica completude do formulário
   const isFormComplete = Object.values(formValid).every(Boolean);
 
+  // --- Server Action Execution ---
   const [isPending, startTransition] = useTransition();
 
   const handleRegister = () => {
     if (!isFormComplete) return;
 
+    // Inicia transição para server action
     startTransition(async () => {
       console.log(formData);
+
+      // Chama a Server Action (modules/register/actions.ts)
       const result = await registerUser(formData);
       console.log(result);
 
       if (result.success) {
-        alert(result.message); // Temporário: trocar por Toast
+        alert(result.message); // Temporário: trocar por UI de sucesso mais rica
         // router.push('/login');
       } else {
+        // Exibe erros retornados pelo servidor (que podem ter escapado da validação client-side)
         alert(result.message || 'Erro ao criar conta');
         console.error(result.errors);
       }
     });
   };
 
+  // Generic controlled input handler
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -75,6 +101,7 @@ const RegisterForm = () => {
 
   return (
     <form className='flex flex-col gap-5 mt-8'>
+      {/* Seção 1: Dados Pessoais */}
       <h2>Informações Usuário</h2>
       <div className='flex gap-5'>
         <div>
@@ -91,6 +118,7 @@ const RegisterForm = () => {
             }}
             value={formData.name}
             onChange={handleChange}
+            // Callback que recebe o status da validação do componente filho
             onValidationChange={isValid => handleValidation('name', isValid)}
           />
         </div>
@@ -131,6 +159,8 @@ const RegisterForm = () => {
           onValidationChange={isValid => handleValidation('email', isValid)}
         />
       </div>
+
+      {/* Seção 2: Credenciais do Jogo (Game Account) */}
       <h2>Informações Conta</h2>
       <div>
         <RegisterFormInput
@@ -180,7 +210,7 @@ const RegisterForm = () => {
           autoComplete='off'
           maxLength={12}
           validation={{
-            isConfirmPassword: formData.password,
+            isConfirmPassword: formData.password, // Validação dinâmica comparada com o campo senha
           }}
           value={formData.confirmPassword}
           onChange={handleChange}
@@ -189,6 +219,8 @@ const RegisterForm = () => {
           }
         />
       </div>
+
+      {/* Segurança e Submit */}
       <div className='flex justify-center'>
         <ReCAPTCHA
           sitekey='6LfChFUsAAAAABOaT_whiEuTf3AqbJ3XsbWyO8Jh'
@@ -197,7 +229,7 @@ const RegisterForm = () => {
           theme='dark'
         />
       </div>
-      <div>
+      <div className='flex justify-center'>
         <input
           className={`btn ${!isFormComplete || isPending ? 'disabled' : ''} bg-violet-600 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded transition-colors`}
           type='button'

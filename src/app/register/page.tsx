@@ -1,3 +1,10 @@
+/**
+ * 📝 Register Page
+ *
+ * Página de cadastro de novos usuários.
+ * Entrypoint principal para aquisição de novos jogadores.
+ */
+
 import config from '@/json/configServer.json';
 import Link from 'next/link';
 import RegisterForm from './RegisterForm';
@@ -5,7 +12,7 @@ import RegisterForm from './RegisterForm';
 const RegisterPage = () => {
   return (
     <div className='min-h-screen max-w-lg mx-auto py-12 px-6'>
-      <h1 className='text-center'>Crie sua Conta </h1>
+      <h1 className='text-center'>Crie sua Conta</h1>
       <p className=' text-center mb-2'>
         Crie sua conta e prepare-se para entrar no mundo épico de{' '}
         {config.serverName}.

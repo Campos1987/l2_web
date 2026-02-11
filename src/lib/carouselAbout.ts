@@ -1,3 +1,10 @@
+/**
+ * 🎠 Carousel Data Utility
+ *
+ * Factory function para recuperar dados estáticos de carrosséis.
+ * Centraliza a importação de JSONs de configuração.
+ */
+
 import aboutHome from '@/json/carouselAbout.json';
 
 const carouselAbout = (carouselName: string) => {

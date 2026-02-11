@@ -1,3 +1,11 @@
+/**
+ * 🎠 About Home Carousel
+ *
+ * Seção "Sobre" na Home Page.
+ * Utiliza um Carousel reutilizável para exibir cards informativos ('features' do servidor).
+ * Dados alimentados por `carouselAbout`.
+ */
+
 import Carousel from '@/ui/Carousel/Carousel';
 import carouselAbout from '@/lib/carouselAbout';
 

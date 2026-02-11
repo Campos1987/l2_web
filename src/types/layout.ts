@@ -1,3 +1,10 @@
+/**
+ * 📐 Layout Types
+ *
+ * Definições de tipos para componentes de layout e UI.
+ * Inclui Props para Carousel, Loaders e Logo.
+ */
+
 export interface CarouselItem {
   image: string;
   label: string;

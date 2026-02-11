@@ -1,23 +1,21 @@
 /**
- * 📅 Event Detail Page
+ * 📰 News Detail Page
  *
- * Página dinâmica para exibição de um evento específico.
- * Recebe o `slug` via parâmetros de rota e renderiza o conteúdo detalhado.
+ * Página dinâmica para exibição de uma notícia específica.
  */
 
 import { EventPageProps } from '@/types/roote';
-import EventDetail from './eventDetail'; // Componente de detalhe
+import NewsDetail from './newsDetail'; // Detail Component
 import LoadingSuspense from '@/ui/LoadingSuspense/LoadingSuspense';
 
 const eventSlug = async ({ params }: EventPageProps) => {
-  // Await params necessário no Nextjs 15+ se params for Promise
   const resolvedParams = await params;
 
   return (
     <section className='m-auto h-full py-8 px-32'>
       <div className={`m-auto grid grid-cols-1 gap-4 py-8`}>
         <LoadingSuspense>
-          <EventDetail slug={resolvedParams.slug} />
+          <NewsDetail slug={resolvedParams.slug} />
         </LoadingSuspense>
       </div>
     </section>

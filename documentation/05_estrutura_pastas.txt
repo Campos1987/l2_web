@@ -4,22 +4,21 @@ src/
  ├─ app/                 -> Camada de Rotas (Next.js App Router)
  │   └─ register/        -> Página de registro
  ├─ modules/             -> Lógica de Negócio (Domain Driven)
- │   └─ auth/            -> Módulo de Autenticação
- │       ├─ components/  -> Componentes específicos (RegisterForm)
- │       ├─ actions.ts   -> Server Actions (API)
- │       ├─ services.ts  -> Regras de negócio e acesso a dados
- │       └─ schemas.ts   -> Validação (Zod)
+ │   ├─ auth/            -> Módulo de Autenticação (Actions, Schemas)
+ │   ├─ register/        -> Módulo de Registro
+ │   └─ query-service/   -> Serviços de Leitura (CQRS-lite)
  ├─ ui/                  -> Design System e Componentes Genéricos
- │   ├─ Button.tsx       -> Componente de Botão
+ │   ├─ Button/          -> Componentes atômicos
  │   ├─ Header/          -> Header e subcomponentes
  │   ├─ Footer/          -> Footer
  │   ├─ Carousel/        -> Carousel customizado
- │   └─ Logo.tsx         -> Logo da aplicação
+ │   └─ Logo/            -> Logo da aplicação
  ├─ infra/               -> Infraestrutura e Conexões
  │   └─ db.ts            -> Instância do Prisma Client
  ├─ lib/                 -> Utilitários Gerais
- │   └─ validation/      -> Helpers de validação legados
+ │   └─ validation/      -> Helpers de validação
  └─ styles/              -> CSS Global
 
 prisma/
  └─ schema.prisma        -> Schema do banco
+

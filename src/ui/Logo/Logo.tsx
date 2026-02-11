@@ -1,3 +1,10 @@
+/**
+ * 🐉 Logo Component
+ *
+ * Exibe o nome do servidor conforme configuração (`configServer.json`).
+ * Renderiza apenas texto com fonte Cinzel (estilo L2).
+ */
+
 import { LogoProps } from '@/types/layout';
 import config from '@/json/configServer.json';
 import React from 'react';

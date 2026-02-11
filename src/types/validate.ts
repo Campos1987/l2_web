@@ -1,3 +1,10 @@
+/**
+ * ✅ Validation Types
+ *
+ * Tipagem complexa para o sistema de validação de formulários.
+ * Define props de configuração, resultados de validação e interfaces de input.
+ */
+
 import { InputHTMLAttributes } from 'react';
 
 export interface validationProps {
@@ -14,8 +21,12 @@ export interface validationProps {
   SpecialPattern?: number;
 }
 
-export interface inputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface inputRegisterProps extends InputHTMLAttributes<HTMLInputElement> {
   validation: validationProps;
+  onValidationChange?: (isValid: boolean) => void;
+}
+
+export interface inputLoginProps extends InputHTMLAttributes<HTMLInputElement> {
   onValidationChange?: (isValid: boolean) => void;
 }
 
@@ -40,3 +51,9 @@ export interface validInputBdProps {
   cell: ValidCell;
   value: string;
 }
+
+export type RegisterState = {
+  success: boolean;
+  message?: string;
+  errors?: Record<string, string[]>;
+};

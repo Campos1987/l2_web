@@ -1,20 +1,20 @@
 'use client';
 import LoginFormInput from '@/modules/auth/components/LoginFormInput';
-// import { LoginUser } from '@/modules/auth/actions';
+import { loginUser } from '@/modules/auth/actions';
 import { useState, useTransition } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
-    user: '',
+    login: '',
     password: '',
     captchaToken: '',
   });
 
   const [formValid, setformValid] = useState({
-    user: false,
+    login: false,
     password: false,
-    captcha: false,
+    captcha: true,
   });
 
   const handleValidation = (name: string, isValid: boolean) => {
@@ -43,21 +43,16 @@ const LoginForm = () => {
 
     // Inicia transição para server action
     startTransition(async () => {
-      console.log(formData);
-
       // Chama a Server Action (modules/atth/actions.ts)
-      // const result = await LoginUser(formData);
-      // const result = await LoginUser(formData);
-      // console.log(result);
+      const result = await loginUser(formData);
 
-      // if (result.success) {
-      //   alert(result.message); // Temporário: trocar por UI de sucesso mais rica
-      //   // router.push('/login');
-      // } else {
-      //   // Exibe erros retornados pelo servidor (que podem ter escapado da validação client-side)
-      //   alert(result.message || 'Erro ao criar conta');
-      //   console.error(result.errors);
-      // }
+      if (result.success) {
+        alert(result.message); // Temporário: trocar por UI de sucesso mais rica
+        // router.push('/login');
+      } else {
+        // Exibe erros retornados pelo servidor (que podem ter escapado da validação client-side)
+        alert(result.message || 'Erro ao criar conta');
+      }
     });
   };
 
@@ -66,18 +61,18 @@ const LoginForm = () => {
       <div>
         <LoginFormInput
           type='text'
-          name='user'
-          value={formData.user}
-          placeholder='Login'
-          maxLength={12}
+          name='login'
+          value={formData.login}
+          placeholder='Login / e-mail'
+          maxLength={100}
           className='w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-neutral-100 focus:border-violet-500 focus:ring-violet-500'
           onChange={e =>
             setFormData(prev => ({
               ...prev,
-              user: e.target.value,
+              login: e.target.value,
             }))
           }
-          onValidationChange={isValid => handleValidation('user', isValid)}
+          onValidationChange={isValid => handleValidation('login', isValid)}
         />
       </div>
       <div>
@@ -99,14 +94,14 @@ const LoginForm = () => {
       </div>
 
       {/* Segurança e Submit */}
-      <div className='flex justify-center'>
+      {/* <div className='flex justify-center'>
         <ReCAPTCHA
           sitekey='6LfChFUsAAAAABOaT_whiEuTf3AqbJ3XsbWyO8Jh'
           onChange={handleCaptcha}
           onExpired={() => handleCaptcha(null)}
           theme='dark'
         />
-      </div>
+      </div> */}
       <div className='flex justify-center'>
         <input
           className={`btn ${!isFormComplete || isPending ? 'disabled' : ''} bg-violet-600 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded transition-colors`}

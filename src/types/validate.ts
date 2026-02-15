@@ -48,7 +48,6 @@ export interface ValidationResult {
 export type ValidCell = 'login' | 'email';
 
 export interface validInputBdProps {
-  cell: ValidCell;
   value: string;
 }
 

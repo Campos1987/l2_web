@@ -10,7 +10,9 @@
 'use server';
 
 import 'server-only';
-import { prismaWeb } from '@/infra/db';
+import { dbWeb } from '@/infra/dbWeb';
+import { gkEvent, gkNews } from '../../../../drizzle/web/schema';
+import { and, asc, desc, eq } from 'drizzle-orm';
 
 // ----------------------------------------------------------------------
 // ⏳ Development Helpers
@@ -45,22 +47,21 @@ export const findAllPublicEvents = async ({
 } = {}) => {
   await simulatewait(); // Simula latência de rede
 
-  const data = await prismaWeb.gk_event.findMany({
-    take: limit,
-    orderBy: {
-      created_at: direction,
-    },
-    // Seleção explícita de campos (Performance: evita trazer colunas pesadas desnecessárias)
-    select: {
-      id: true,
-      title: true,
-      content: true,
-      slug: true,
-      type: true,
-      created_at: true,
-      schedule: true,
-    },
-  });
+  const orderFn = direction === 'asc' ? asc : desc;
+
+  const data = await dbWeb
+    .select({
+      id: gkEvent.id,
+      title: gkEvent.title,
+      content: gkEvent.content,
+      slug: gkEvent.slug,
+      type: gkEvent.type,
+      created_at: gkEvent.createdAt,
+      schedule: gkEvent.schedule,
+    })
+    .from(gkEvent)
+    .orderBy(orderFn(gkEvent.createdAt))
+    .limit(limit);
   return data;
 };
 
@@ -75,23 +76,23 @@ export const findAllPublicNews = async ({
   limit?: number;
   direction?: 'asc' | 'desc';
 } = {}) => {
-  await simulatewait();
+  await simulatewait(); // Simula latência de rede
 
-  const data = await prismaWeb.gk_news.findMany({
-    take: limit,
-    orderBy: {
-      created_at: direction,
-    },
-    select: {
-      id: true,
-      title: true,
-      content: true,
-      slug: true,
-      type: true,
-      created_at: true,
-      schedule: true,
-    },
-  });
+  const orderFn = direction === 'asc' ? asc : desc;
+
+  const data = await dbWeb
+    .select({
+      id: gkNews.id,
+      title: gkNews.title,
+      content: gkNews.content,
+      slug: gkNews.slug,
+      type: gkNews.type,
+      created_at: gkNews.createdAt,
+      schedule: gkNews.schedule,
+    })
+    .from(gkNews)
+    .orderBy(orderFn(gkNews.createdAt))
+    .limit(limit);
   return data;
 };
 
@@ -106,12 +107,11 @@ export const findAllPublicNews = async ({
 export const findPublicPostEvent = async (slug: string) => {
   await simulatewait();
 
-  const data = await prismaWeb.gk_event.findFirst({
-    where: {
-      slug: slug,
-      is_active: true, // Garante que apenas posts ativos sejam acessíveis
-    },
-  });
+  const data = await dbWeb
+    .select()
+    .from(gkEvent)
+    .where(and(eq(gkEvent.slug, slug), eq(gkEvent.isActive, 1)))
+    .orderBy(asc(gkEvent.createdAt));
   return data;
 };
 
@@ -122,11 +122,10 @@ export const findPublicPostEvent = async (slug: string) => {
 export const findPublicPostNews = async (slug: string) => {
   await simulatewait();
 
-  const data = await prismaWeb.gk_news.findFirst({
-    where: {
-      slug: slug,
-      is_active: true,
-    },
-  });
+  const data = await dbWeb
+    .select()
+    .from(gkNews)
+    .where(and(eq(gkNews.slug, slug), eq(gkNews.isActive, 1)))
+    .orderBy(asc(gkNews.createdAt));
   return data;
 };

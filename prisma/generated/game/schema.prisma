@@ -1,8 +1,0 @@
-generator client {
-  provider = "prisma-client-js"
-  output   = "./generated/game"
-}
-
-datasource db {
-  provider = "mysql"
-}

@@ -12,6 +12,7 @@ import { dbLogin } from '@/infra/dbLogin';
 import { accounts } from '../../../drizzle/login/schema';
 import { z } from 'zod';
 import { registerSchema } from './schemas';
+import { and, eq, or, sql } from 'drizzle-orm';
 
 // ----------------------------------------------------------------------
 // 🔐 Security Helpers
@@ -45,22 +46,49 @@ export type RegisterData = z.infer<typeof registerSchema>;
  * Cria um novo usuário no banco de dados LoginServer.
  * Mapeia os dados do formulário para a estrutura da tabela 'accounts'.
  */
-export const createUser = async (data: RegisterData) => {
+export const userRequest = async (data: RegisterData) => {
   const shaPassWord = await sha1(data.password);
 
-  // Utiliza o cliente drizzle configurado em infra/db.ts
   try {
-    await dbLogin.insert(accounts).values({
-      login: data.login,
-      password: shaPassWord,
-      name: data.name + ' ' + data.lastname,
-      email: data.email,
-      accessLevel: -4,
-      activeStatus: 'PENDING',
-      lastactive: Date.now(),
-    });
+    const isLoginValid = await dbLogin
+      .select({ login: accounts.login })
+      .from(accounts)
+      .where(
+        or(eq(accounts.login, data.login), eq(accounts.email, data.login)),
+      );
+
+    if (isLoginValid.length === 1) {
+      const isPasswordValid = await dbLogin
+        .select({ login: accounts.login })
+        .from(accounts)
+        .where(
+          and(
+            or(eq(accounts.login, data.login), eq(accounts.email, data.login)),
+            eq(accounts.password, shaPassWord),
+          ),
+        );
+      console.log(isPasswordValid.length === 1);
+      if (isPasswordValid.length === 1) {
+        return true;
+      } else {
+        await dbLogin
+          .update(accounts)
+          .set({
+            loginRetryCount: sql`${accounts.loginRetryCount} + 1`,
+          })
+          .where(
+            or(eq(accounts.login, data.login), eq(accounts.email, data.login)),
+          );
+
+        console.log('ei aqui');
+        return false;
+      }
+      return false;
+    }
+    return false;
   } catch (e) {
-    console.log('falha ao inserir dados');
-    throw new Error('Falha ao inserir dados');
+    throw new Error('Usuario ou senha incorretos');
   }
+
+  return false;
 };

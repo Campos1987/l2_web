@@ -72,11 +72,8 @@ const RegisterForm = () => {
 
     // Inicia transição para server action
     startTransition(async () => {
-      console.log(formData);
-
       // Chama a Server Action (modules/register/actions.ts)
       const result = await registerUser(formData);
-      console.log(result);
 
       if (result.success) {
         alert(result.message); // Temporário: trocar por UI de sucesso mais rica
@@ -84,7 +81,6 @@ const RegisterForm = () => {
       } else {
         // Exibe erros retornados pelo servidor (que podem ter escapado da validação client-side)
         alert(result.message || 'Erro ao criar conta');
-        console.error(result.errors);
       }
     });
   };

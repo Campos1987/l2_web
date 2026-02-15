@@ -11,16 +11,15 @@
  * - ♿ Acessibilidade
  */
 
-import {
-  inputRegisterProps,
-  requirementProp,
-  ValidCell,
-} from '@/types/validate';
+import { inputRegisterProps, requirementProp } from '@/types/validate';
 import { validInput } from '@/lib/validation/Validate';
 import { Check, Eye, EyeOff } from 'lucide-react';
 import { forwardRef, useEffect, useState } from 'react';
 import { MAP_TEXT } from '@/lib/validation/validation';
-import { validInputBd } from '@/lib/validation/validInputBd';
+import {
+  validInputBdEmail,
+  validInputBdLogin,
+} from '@/lib/validation/validInputBd';
 import Link from 'next/link';
 
 // ----------------------------------------------------------------------
@@ -95,10 +94,12 @@ export const RegisterFormInput = forwardRef<
         return;
       }
 
-      const existe = await validInputBd({
-        cell: safeName as ValidCell,
-        value: safeValue,
-      });
+      let existe = false;
+      if (safeName === 'login') {
+        existe = await validInputBdLogin({ value: safeValue });
+      } else if (safeName === 'email') {
+        existe = await validInputBdEmail({ value: safeValue });
+      }
 
       if (existe) {
         setHasValueBd(true);

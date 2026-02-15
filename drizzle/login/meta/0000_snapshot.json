@@ -1,0 +1,166 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "5",
+  "dialect": "mysql",
+  "tables": {
+    "accounts": {
+      "name": "accounts",
+      "columns": {
+        "login": {
+          "default": "''''''",
+          "autoincrement": false,
+          "name": "login",
+          "type": "varchar(12)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password": {
+          "autoincrement": false,
+          "name": "password",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "autoincrement": false,
+          "name": "email",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "login_retry_count": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "login_retry_count",
+          "type": "tinyint(3) unsigned",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "active_status": {
+          "autoincrement": false,
+          "name": "active_status",
+          "type": "enum('PENDING','ACTIVE','LOCKED','BANNED')",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_time": {
+          "default": "'current_timestamp()'",
+          "autoincrement": false,
+          "name": "created_time",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lastactive": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "lastactive",
+          "type": "bigint(13) unsigned",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "accessLevel": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "accessLevel",
+          "type": "tinyint(4)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lastIP": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "lastIP",
+          "type": "char(15)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lastServer": {
+          "default": 1,
+          "autoincrement": false,
+          "name": "lastServer",
+          "type": "tinyint(4)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pcIp": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "pcIp",
+          "type": "char(15)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hop1": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "hop1",
+          "type": "char(15)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hop2": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "hop2",
+          "type": "char(15)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hop3": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "hop3",
+          "type": "char(15)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hop4": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "hop4",
+          "type": "char(15)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "login": {
+          "name": "login",
+          "columns": [
+            "login"
+          ]
+        },
+        "email": {
+          "name": "email",
+          "columns": [
+            "email"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    }
+  },
+  "views": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "tables": {},
+    "indexes": {}
+  }
+}
